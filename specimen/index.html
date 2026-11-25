@@ -291,5 +291,7 @@ window.JF={site:SITE,cat:CAT,base:'',paper:'page'};
 })();
 </script>
 
+<script>/* the first click anywhere on the home page counts as permission for sound on the specimen pages this visit */
+['pointerdown','keydown','touchend'].forEach(ev=>addEventListener(ev,()=>{try{sessionStorage.setItem('tr-heard','1')}catch(e){}},{once:true,passive:true}));</script>
 </body>
 </html>
