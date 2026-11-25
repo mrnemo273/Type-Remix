@@ -193,5 +193,7 @@ $('credits').innerHTML=CAT.map((f,i)=>{const b=f.base||{};return `<article class
 window.JF={site:SITE,cat:CAT,base:'',paper:'page'};
 </script>
 <!--FOOTER-->
+<script>/* the first click anywhere on the home page counts as permission for sound on the specimen pages this visit */
+['pointerdown','keydown','touchend'].forEach(ev=>addEventListener(ev,()=>{try{sessionStorage.setItem('tr-heard','1')}catch(e){}},{once:true,passive:true}));</script>
 </body>
 </html>

@@ -246,7 +246,10 @@ S.load().then(D=>{
 /* sound: soft synthesized press and ratchet ticks; browsers only allow audio after the visitor clicks or types */
 const SND=(()=>{let ctx=null,on=true,un=false,nb=null;try{on=localStorage.getItem('tr-sound')!=='off'}catch(e){}
   const get=()=>{if(!ctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;ctx=new AC()}if(ctx.state==='suspended')ctx.resume();return ctx};
-  const unlock=()=>{un=true;if(on)get()};['pointerdown','keydown','touchend'].forEach(ev=>addEventListener(ev,unlock,{once:true,passive:true}));
+  const unlock=()=>{un=true;try{sessionStorage.setItem('tr-heard','1')}catch(e){}if(on)get()};['pointerdown','keydown','touchend'].forEach(ev=>addEventListener(ev,unlock,{once:true,passive:true}));
+  /* if the visitor already clicked somewhere on the site this visit (the home page included), try to start the sound right away:
+     Chrome and Edge allow it after a click on the same site; browsers that don't keep waiting for a click on this page */
+  try{if(on&&sessionStorage.getItem('tr-heard')){const c=get();if(c){const ready=()=>{if(c.state==='running')un=true};c.addEventListener('statechange',ready);c.resume().then(ready,()=>{})}}}catch(e){}
   const noise=c=>{if(!nb){nb=c.createBuffer(1,c.sampleRate*.25|0,c.sampleRate);const d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1}return nb};
   const ok=()=>on&&un&&ctx&&ctx.state==='running';let last=0,bs=null;
   const bus=c=>{if(!bs){const k=c.createDynamicsCompressor();k.threshold.value=-24;k.ratio.value=4;k.attack.value=.003;k.release.value=.2;const g=c.createGain();g.gain.value=.9;k.connect(g).connect(c.destination);bs=k}return bs};
