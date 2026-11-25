@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grex Sans — Pasteboard</title>
+<style>
+/* Layout idea: a riso zine you can handle — full-screen spreads, a loupe that finds the grain hiding under clean Plex, and a cutting mat of prints you can push around. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#6f6f69;
+  --pink:#ff48b0; --blue:#0078bf; --yellow:#ffe800; --mat:#1d5a48; --matline:#2c7560;
+  --gut:clamp(16px,3vw,56px);
+  --display:'Grex Sans','IBM Plex Sans',system-ui,sans-serif;
+  color-scheme:light;
+}
+@font-face{font-family:'Grex Sans';src:url('GrexSans.woff2') format('woff2');font-weight:100 700;font-display:block}
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{font-family:var(--display);font-variation-settings:'GRAN' 0;line-height:1.45;overflow-x:hidden}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.small{font-size:12px;letter-spacing:.07em;text-transform:uppercase;font-weight:600}
+.btn{font:inherit;font-size:13px;font-weight:600;border:2px solid currentColor;background:transparent;color:inherit;padding:9px 15px;cursor:pointer}
+.spread{min-height:100svh;scroll-snap-align:start;position:relative;padding:var(--gut);display:flex;flex-direction:column}
+.folio{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.folio a{color:inherit}
+.say{font-size:clamp(28px,4.4vw,80px);line-height:.98;font-weight:700;letter-spacing:-.015em;margin:0;max-width:16ch;text-wrap:balance}
+
+/* 1 touch */
+.s1 #line{margin:auto 0;font-size:clamp(56px,13vw,300px);line-height:.88;letter-spacing:-.03em;font-weight:700;user-select:none;cursor:crosshair;touch-action:pan-y}
+#line .wd{display:inline-block;white-space:nowrap}#line span{display:inline-block}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bar input{font:inherit;font-size:15px;border:0;border-bottom:2px solid currentColor;padding:6px 2px;width:min(320px,100%);background:transparent;color:inherit}
+
+/* 2 lens */
+.s2{background:var(--pink);cursor:none}
+.s2 canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
+.s2 .over{position:relative;z-index:1;pointer-events:none;display:flex;flex-direction:column;height:100%;flex:1}
+.s2 .over .say{margin-top:14px;max-width:22ch;font-size:clamp(24px,3.2vw,56px)}
+
+/* 3 scroll */
+.s3{height:230vh;padding:0;scroll-snap-align:start;background:var(--yellow)}
+.s3 .stick{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:var(--gut)}
+#read{font-size:clamp(44px,9vw,200px);line-height:.95;letter-spacing:-.02em;max-width:13ch;text-wrap:balance}
+.meter{height:6px;background:#11111122;margin-top:24px;width:min(600px,100%)}.meter i{display:block;height:100%;background:var(--ink);width:0}
+
+/* 4 mat */
+.s4{background:var(--mat);color:#fff;background-image:linear-gradient(var(--matline) 1px,transparent 1px),linear-gradient(90deg,var(--matline) 1px,transparent 1px);background-size:40px 40px}
+.mat{position:relative;margin-top:24px;flex:1}
+.mat figure{position:absolute;margin:0;cursor:grab;touch-action:auto;transition:transform .25s ease, left .5s ease, top .5s ease;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.mat figure.drag{cursor:grabbing;transition:none;box-shadow:0 20px 40px rgba(0,0,0,.45)}
+.mat figcaption{position:absolute;left:0;top:100%;margin-top:6px;font-size:11px;color:#d6ebe3;white-space:nowrap}
+.mat figcaption span{display:none}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+/* 5 resize */
+.s5{background:var(--paper)}
+.rz{margin:auto 0;display:grid;grid-template-columns:minmax(0,1fr) clamp(200px,24vw,320px);gap:var(--gut);align-items:center}
+.box{position:relative;border:2px dashed var(--ink);width:60%;min-width:160px;max-width:100%;height:clamp(200px,42vh,560px);display:flex;align-items:center;overflow:hidden;resize:none}
+.box .w{font-weight:700;line-height:.8;padding-left:.04em;white-space:nowrap}
+.box .h{position:absolute;right:-2px;bottom:-2px;width:28px;height:28px;background:var(--pink);cursor:nwse-resize;touch-action:none}
+.rd b{display:block;font-size:clamp(36px,5vw,84px);line-height:1;font-weight:700;font-variant-numeric:tabular-nums}
+.rd div{margin-bottom:18px}
+.rd input{width:100%;accent-color:var(--pink)}
+
+/* 6 poster */
+.s6{background:#efeee8;align-items:center}
+.s6 .poster{position:relative;height:min(84svh,140vw);aspect-ratio:3/4;max-width:100%;background:#fffdf8;overflow:hidden;isolation:isolate;margin:16px auto}
+.s6 .cap{position:absolute;left:4%;bottom:3%;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;mix-blend-mode:multiply}
+
+/* 7 film */
+.s7{background:var(--ink);color:#fff;padding-left:0;padding-right:0}
+.s7 .folio,.s7 .say{padding:0 var(--gut)}
+.film{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;margin:auto 0;padding:24px 0;border-top:14px dotted #333;border-bottom:14px dotted #333}
+.frame-f{flex:0 0 clamp(260px,46vw,760px);scroll-snap-align:center;padding:16px var(--gut);border-right:2px solid #2a2a2a}
+.frame-f .w{font-size:clamp(80px,15vw,260px);line-height:.9;font-weight:700}
+.frame-f .n{opacity:.6;font-variant-numeric:tabular-nums}
+
+/* 8 stamps */
+.s8{background:var(--blue);color:#fff}
+.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:clamp(14px,2vw,28px);margin-top:28px}
+.stamp{background:#fffdf8;color:var(--ink);padding:16px;outline:6px dotted var(--blue);outline-offset:-3px;border:6px solid #fffdf8;display:flex;flex-direction:column;gap:8px;min-height:180px}
+.stamp:nth-child(3n+1){transform:rotate(-1.5deg)}.stamp:nth-child(3n+2){transform:rotate(1deg)}
+.stamp .s{font-size:clamp(28px,2.8vw,44px);line-height:1.05;font-variation-settings:'GRAN' 100;margin-top:auto}
+.stamp .s.off{font-size:14px;color:var(--muted);margin-top:0;font-variation-settings:'GRAN' 0}
+.hl{color:var(--pink)}
+
+/* 9 colophon */
+.s9{background:var(--ink);color:#fff}
+.s9 .big{font-size:clamp(80px,22vw,420px);line-height:.8;font-weight:700;letter-spacing:-.04em;margin:auto 0 0}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut);margin-top:28px}
+.cols p{margin:6px 0 0;opacity:.85}
+code{font-size:12px;background:#ffffff1f;padding:2px 5px}
+
+@media (max-width:820px){.rz,.cols{grid-template-columns:1fr}.box{width:100%}}
+@media (prefers-reduced-motion:reduce){html{scroll-snap-type:none}.s3{height:auto}.s3 .stick{position:static;min-height:0}.mat figure{transition:none}}
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#111;color:#fff;font:600 13px/1 'Grex Sans','IBM Plex Sans',system-ui,sans-serif;font-variation-settings:'GRAN' 0;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">← All explorations</a>
+
+<section class="spread s1" aria-label="Wear the type by touching it">
+  <div class="folio small"><span>Grex Sans · a zine in nine spreads</span><span>01</span></div>
+  <div id="line"></div>
+  <div class="bar"><span class="small" id="meter2">Rub the letters</span><input id="own" value="Handle with care." maxlength="36" aria-label="Type your own line"><button class="btn" id="fresh">Fresh</button><button class="btn" id="worn">Worn</button></div>
+</section>
+
+<section class="spread s2" id="lensS" aria-label="A loupe reveals the grain under clean letters">
+  <canvas id="lens"></canvas>
+  <div class="over"><div class="folio small"><span>Under the loupe</span><span>02</span></div>
+    <p class="say">Clean Plex on top. Under the glass, the grain: <span id="pts"></span> points where Plex has <span id="ptp"></span>.</p></div>
+</section>
+
+<section class="s3" id="scroll" aria-label="Type that wears as you scroll">
+  <div class="stick"><div class="folio small"><span>Keep scrolling</span><span>03</span></div>
+    <div id="read" style="margin-top:auto;margin-bottom:auto">Every page you turn takes a little ink.</div>
+    <div class="small">Weight <b id="sw">300</b> · Grain <b id="sg">0</b></div><div class="meter"><i id="sb"></i></div></div>
+</section>
+
+<section class="spread s4" aria-label="Pasteboard of prints">
+  <div class="folio small"><span>The pasteboard · drag them around</span><span>04</span></div>
+  <p class="say" style="margin-top:14px">Fourteen jobs, one typeface.</p>
+  <div class="tools"><button class="btn" id="scatter">Scatter</button><button class="btn" id="tidy">Tidy up</button></div>
+  <div class="mat" id="mat"></div>
+</section>
+
+<section class="spread s5" aria-label="Resize the word">
+  <div class="folio small"><span>Pull the corner</span><span>05</span></div>
+  <div class="rz">
+    <div class="box" id="box"><span class="w" id="rw">Ink</span><span class="h" id="handle" aria-hidden="true"></span></div>
+    <div class="rd small">
+      <div>Size<b id="rpx"></b></div><div>Grain<b id="rg"></b></div>
+      <label for="rsl">Or set the size</label><input type="range" id="rsl" min="40" max="420" value="200">
+      <p style="text-transform:none;letter-spacing:0;font-weight:400;font-size:14px;color:var(--muted)">The grain follows the size: small text stays clean, big type gets the full texture.</p>
+    </div>
+  </div>
+</section>
+
+<section class="spread s6" aria-label="Overprint poster">
+  <div class="folio small" style="width:100%"><span>Pull a print</span><span>06</span></div>
+  <div class="poster" id="poster"><div class="cap" id="pcap"></div></div>
+  <button class="btn" id="pull">Pull another</button>
+</section>
+
+<section class="spread s7" aria-label="Print run filmstrip">
+  <div class="folio small"><span>The run · scroll sideways</span><span>07</span></div>
+  <p class="say" style="margin-top:14px">Twelve impressions, clean to worn.</p>
+  <div class="film" id="film" tabindex="0" aria-label="Twelve impressions, scroll sideways"></div>
+</section>
+
+<section class="spread s8" aria-label="Features as stamps">
+  <div class="folio small"><span>A sheet of stamps</span><span>08</span></div>
+  <p class="say" style="margin-top:14px">Every alternate from Plex, kept.</p>
+  <div class="stamps" id="stamps"></div>
+</section>
+
+<section class="spread s9" aria-label="Colophon">
+  <div class="folio small"><span>Colophon</span><span>09</span></div>
+  <div class="big" id="bigG">Grex.</div>
+  <div class="cols">
+    <div><span class="small">Files</span><p>GrexSans[GRAN,wght].ttf and .woff2 in Type/fonts/grex-sans/fonts.</p></div>
+    <div><span class="small">Axes</span><p><code>font-weight: 100–700</code><br><code>font-variation-settings: 'GRAN' 0–100</code></p></div>
+    <div><span class="small">Licence</span><p>SIL Open Font License 1.1. Built on IBM Plex Sans (Mike Abbink, Bold Monday). Grain by JC Morales.</p></div>
+  </div>
+</section>
+
+<script src="grex-core.js"></script>
+<script src="inuse.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+GX.fvs($('bigG'),700,100);
+document.fonts.ready.then(()=>{
+  const wl=GX.wearLine($('line'),$('own').value,{onWear:v=>$('meter2').textContent=`Worn ${v}%`});
+  $('own').oninput=e=>wl.build(e.target.value);$('fresh').onclick=()=>wl.set(0);$('worn').onclick=()=>wl.set(100);
+  let pulls=0;const doPull=()=>{GX.pull($('poster'),['#ff48b0','#0078bf','#ffe800']);pulls++;$('pcap').textContent=`Grex Sans · pull ${String(pulls).padStart(3,'0')}`};
+  $('pull').onclick=doPull;doPull();layoutMat(true);sizeTo(+$('rsl').value);
+});
+// 3 scroll
+const sc=$('scroll'),rd=$('read');
+const onScroll=()=>{const r=sc.getBoundingClientRect(),t=GX.clamp(-r.top/(r.height-innerHeight),0,1);GX.fvs(rd,300+t*400,t*100);$('sw').textContent=Math.round(300+t*400);$('sg').textContent=Math.round(t*100);$('sb').style.width=t*100+'%'};
+if(GX.reduce){GX.fvs(rd,600,70)}else{addEventListener('scroll',onScroll,{passive:true});onScroll()}
+
+// 4 mat
+const mat=$('mat');let figs=[];let z=10;
+GREX_INUSE.forEach(e=>{const f=grexUse(e);mat.appendChild(f);figs.push(f)});
+function layoutMat(scatter){const W=mat.clientWidth;const cw=W<640?W:Math.max(240,Math.min(360,W/4.2));const cols=Math.max(1,Math.floor(W/(cw*1.02)));
+  const colH=new Array(cols).fill(0);const gx=cols>1?(W-cols*cw)/(cols-1):0;
+  figs.forEach((f,i)=>{f.style.width=cw+'px';const h=f.offsetHeight+28;let c=colH.indexOf(Math.min(...colH));
+    const jx=scatter&&cols>1?(Math.random()-.5)*cw*.35:0,jy=scatter?Math.random()*20:0,rot=scatter?(Math.random()-.5)*(cols>1?12:5):0;
+    f.style.left=GX.clamp(c*(cw+gx)+jx,0,W-cw)+'px';f.style.top=colH[c]+jy+'px';f.style.transform=`rotate(${rot}deg)`;colH[c]+=h+(cols>1?18:28)});
+  mat.style.height=Math.max(...colH)+40+'px'}
+$('scatter').onclick=()=>layoutMat(true);$('tidy').onclick=()=>layoutMat(false);
+let rzT;addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(()=>layoutMat(true),150)});
+figs.forEach(f=>{let sx,sy,ox,oy;f.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;e.preventDefault();f.setPointerCapture(e.pointerId);f.classList.add('drag');f.style.zIndex=++z;sx=e.clientX;sy=e.clientY;ox=parseFloat(f.style.left);oy=parseFloat(f.style.top)});
+  f.addEventListener('pointermove',e=>{if(!f.classList.contains('drag'))return;f.style.left=ox+e.clientX-sx+'px';f.style.top=oy+e.clientY-sy+'px'});
+  f.addEventListener('pointerup',()=>f.classList.remove('drag'))});
+
+// 5 resize
+const box=$('box'),rw=$('rw');
+function sizeTo(px){px=GX.clamp(px,40,420);rw.style.fontSize=px+'px';const g=GX.grainForSize(px);GX.fvs(rw,700,g);$('rpx').textContent=Math.round(px)+'px';$('rg').textContent=g;$('rsl').value=px;
+  box.style.height=Math.max(160,px*1.05)+'px';box.style.width=Math.max(160,rw.scrollWidth+40)+'px'}
+$('rsl').oninput=e=>sizeTo(+e.target.value);
+$('handle').addEventListener('pointerdown',e=>{e.preventDefault();const h=$('handle');h.setPointerCapture(e.pointerId);const r=box.getBoundingClientRect();
+  const mv=ev=>sizeTo((ev.clientY-r.top)/1.05);h.addEventListener('pointermove',mv);h.addEventListener('pointerup',()=>h.removeEventListener('pointermove',mv),{once:true})});
+
+// 7 film
+for(let i=0;i<12;i++){const g=Math.round(i/11*100),d=document.createElement('div');d.className='frame-f';d.innerHTML=`<div class="w">Grex</div><div class="small n">${String(i+1).padStart(2,'0')}/12 · grain ${g}</div>`;GX.fvs(d.querySelector('.w'),700,g);$('film').appendChild(d)}
+
+GX.load().then(D=>{
+  const pc=GX.pointCounts(D);$('pts').textContent=pc.grex.toLocaleString();$('ptp').textContent=pc.plex;
+  // 2 lens
+  const cv=$('lens'),S=$('lensS');let L=null;
+  const paint=()=>{const r=cv.getBoundingClientRect();if(!L)L=[0,0];
+    const sc0=Math.min(r.width*.92/2400,r.height*.42/698);
+    const base=GX.drawWord(cv,D,600,0,{ink:'#111',fill:'#111',dot:false,lw:.1,scale:sc0,base:r.height*.9-200*sc0});
+    if(!L.set){L=[base.ox+base.total*base.s*.47,base.base-698*base.s*.62];L.set=1}
+    const R=Math.max(70,Math.min(r.width,r.height)*.2),k=2.2,[cx,cy]=L;
+    const ctx=cv.getContext('2d');
+    GX.drawWord(cv,D,600,100,{clip:[cx,cy,R],bg:'#ff48b0',ink:'#fff',fill:'#111',dot:'#ffe800',dotSize:2.6,scale:base.s*k,ox:cx-(cx-base.ox)*k,base:cy-(cy-base.base)*k,keep:true});
+    ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.lineWidth=6;ctx.strokeStyle='#111';ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx+R*.72,cy+R*.72);ctx.lineTo(cx+R*1.25,cy+R*1.25);ctx.lineWidth=16;ctx.lineCap='round';ctx.stroke()};
+  const paintAll=paint;
+  S.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();L=[e.clientX-r.left,e.clientY-r.top];L.set=1;paintAll()});
+  addEventListener('resize',()=>{L=null;paintAll()});paintAll();
+  // 8 stamps
+  D.features.forEach(f=>{const d=document.createElement('div');d.className='stamp';d.innerHTML=`<span class="small">${f.tag} · ${f.name}</span><span class="s off">${f.sample}</span><span class="s" style="font-feature-settings:'${f.tag}' 1">${GX.featHTML(f)}</span>`;$('stamps').appendChild(d)});
+});
+</script>
+</body>
+</html>

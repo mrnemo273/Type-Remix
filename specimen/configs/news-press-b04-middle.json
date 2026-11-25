@@ -1,0 +1,148 @@
+{
+  "name": "News Press",
+  "slug": "news-press",
+  "version": "1.0",
+  "font": "../../fonts/news-press/fonts/NewsPress[PRES,wght].ttf",
+  "italic": "../../fonts/news-press/fonts/NewsPress-Italic[PRES,wght].ttf",
+  "tagline": "Newsreader, pulled on a newspaper press",
+  "base": {
+    "name": "Newsreader",
+    "path": "../../fonts/news-press/src/Newsreader[opsz,wght].ttf"
+  },
+  "axes": {
+    "wght": {
+      "label": "Weight",
+      "from": "ExtraLight",
+      "to": "ExtraBold",
+      "desc": "ExtraLight to ExtraBold, any value in between"
+    },
+    "PRES": {
+      "label": "Press",
+      "from": "kiss",
+      "to": "heavy",
+      "desc": "Kiss to heavy impression; 50 is the default"
+    }
+  },
+  "ui": {
+    "wght": 400,
+    "PRES": 0
+  },
+  "display": {
+    "wght": 600,
+    "PRES": 50
+  },
+  "heroMotion": {
+    "style": "staccato",
+    "hold": 2.6,
+    "stagger": 45,
+    "press": 0.06,
+    "duration": 260,
+    "steps": 5
+  },
+  "heroCaption": "Every few seconds the whole name is pulled again at a new weight and a new pressure, from ExtraLight to ExtraBold and a kiss to a heavy impression.",
+  "charsNote": "Latin, figures, punctuation, symbols",
+  "featuresNote": "Ligatures, case-sensitive forms, ordinals, superiors, proportional and tabular figures",
+  "scroll": {
+    "sentence": "Every line goes through the press a little harder.",
+    "instruction": "Scroll slowly through this section. The sentence starts at ExtraLight with a kiss of pressure and ends at ExtraBold, pressed heavy: the same font file, both axes moving together as you read."
+  },
+  "loupe": {
+    "title": "Pressed, point by point.",
+    "text": "Every outline is cut into short facets, each pushed in or out the way ink squeezes at the edge of a plate, and small knockouts sit where the paper didn't take the ink. Drag the pad for weight and pressure, then switch to the outlines to see what Newsreader turns into."
+  },
+  "drawn": {
+    "word": "Ink",
+    "axes": [
+      "wght",
+      "PRES"
+    ],
+    "start": {
+      "wght": 600,
+      "PRES": 50
+    }
+  },
+  "size": {
+    "axis": "PRES",
+    "fromPx": 14,
+    "toPx": 110,
+    "title": "Pressure that knows its size.",
+    "text": "The texture is drawn into the outlines, so it scales with the type. Tie Press to font size the other way round and small text gets the heavier impression it needs to show, while headlines stay crisp. This ladder runs from heavy at 14px to a kiss at 110px.",
+    "sentence": "Set in lead, locked in the chase, pulled by hand.",
+    "reverse": true
+  },
+  "matrix": {
+    "title": "Seven weights, three pressures.",
+    "text": "Every weight from ExtraLight to ExtraBold across, kiss to heavy down. The facets and knockouts are the same size at every weight, so ExtraBold looks inked and ExtraLight looks bitten."
+  },
+  "inuse": {
+    "axis": "PRES",
+    "title": "On the newsstand.",
+    "cards": [
+      "front",
+      "bill",
+      "letters",
+      "crossword",
+      "scores",
+      "markets",
+      "listings",
+      "review",
+      "classifieds",
+      "forecast",
+      "subscribe",
+      "tote"
+    ],
+    "text": "Twelve jobs from one newspaper: the front page, the newsstand bill, letters, the crossword, sport, markets, listings, a review, the classifieds, the weather, a subscription ad and the tote bag. Each card notes the settings its headline uses."
+  },
+  "overprint": {
+    "axis": "PRES",
+    "style": "family",
+    "title": "Pairs well with.",
+    "text": "News Press next to the other faces in this catalogue: Worked Sans for text and headlines, Grex Sans for captions and figures. Every page is set in two families, and every caption says which is which.",
+    "partners": [
+      {
+        "name": "Worked Sans",
+        "font": "../../fonts/worked-sans/fonts/WorkedSans[WORK,wght].ttf",
+        "axes": {
+          "WORK": 60
+        }
+      },
+      {
+        "name": "Grex Sans",
+        "font": "../../fonts/grex-sans/fonts/GrexSans[GRAN,wght].ttf",
+        "axes": {
+          "GRAN": 40
+        }
+      }
+    ],
+    "eyebrow": "Pairings"
+  },
+  "run": {
+    "axis": "PRES",
+    "fixed": {
+      "wght": 700
+    },
+    "word": "Press",
+    "title": "Twelve impressions.",
+    "text": "The same word from a kiss to a heavy impression. Each is one setting of the Press axis; nothing here is an image."
+  },
+  "italicSection": {
+    "title": "Italic, pressed too.",
+    "sample": "Hot off the press, still wet.",
+    "text": "A true italic from Newsreader, pressed the same way, with the same weight and Press axes."
+  },
+  "features": {
+    "title": "Everything Newsreader does.",
+    "text": "Ligatures, case-sensitive punctuation, ordinals, superiors and both figure styles carry over from Newsreader. Changed glyphs in pink."
+  },
+  "characters": {
+    "text": "Every character in the font at SemiBold, Press 50. Hover one to see it at text settings."
+  },
+  "files": "NewsPress[PRES,wght].ttf and NewsPress-Italic[PRES,wght].ttf for desktop, .woff2 for web, in Type/fonts/news-press/fonts.",
+  "license": "SIL Open Font License 1.1. Built on Newsreader by Production Type. Letterpress treatment by JC Morales.",
+  "outDir": "explorations/news-press/brief-04-middle",
+  "catalogue": false,
+  "back": {
+    "href": "../../index.html",
+    "label": "Explorations"
+  }
+}

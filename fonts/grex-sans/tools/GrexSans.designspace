@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<designspace format="5.0">
+  <axes>
+    <axis tag="wght" name="Weight" minimum="100" maximum="700" default="400">
+      <map input="100" output="100"/>
+      <map input="200" output="171.026611"/>
+      <map input="300" output="283.251953"/>
+      <map input="400" output="400"/>
+      <map input="450" output="457.293701"/>
+      <map input="500" output="528.100586"/>
+      <map input="600" output="611.505127"/>
+      <map input="700" output="700"/>
+    </axis>
+    <axis tag="GRAN" name="Grain" minimum="0" maximum="100" default="100"/>
+  </axes>
+  <sources>
+    <source filename="masters/w100-g0.ttf" name="w100g0">
+      <location>
+        <dimension name="Weight" xvalue="100"/>
+        <dimension name="Grain" xvalue="0"/>
+      </location>
+    </source>
+    <source filename="masters/w100-g100.ttf" name="w100g100">
+      <location>
+        <dimension name="Weight" xvalue="100"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </source>
+    <source filename="masters/w400-g0.ttf" name="w400g0">
+      <location>
+        <dimension name="Weight" xvalue="400"/>
+        <dimension name="Grain" xvalue="0"/>
+      </location>
+    </source>
+    <source filename="masters/w400-g100.ttf" name="w400g100">
+      <location>
+        <dimension name="Weight" xvalue="400"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </source>
+    <source filename="masters/w700-g0.ttf" name="w700g0">
+      <location>
+        <dimension name="Weight" xvalue="700"/>
+        <dimension name="Grain" xvalue="0"/>
+      </location>
+    </source>
+    <source filename="masters/w700-g100.ttf" name="w700g100">
+      <location>
+        <dimension name="Weight" xvalue="700"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </source>
+  </sources>
+  <instances>
+    <instance familyname="Grex Sans" stylename="Thin">
+      <location>
+        <dimension name="Weight" xvalue="100"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </instance>
+    <instance familyname="Grex Sans" stylename="ExtraLight">
+      <location>
+        <dimension name="Weight" xvalue="200"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </instance>
+    <instance familyname="Grex Sans" stylename="Light">
+      <location>
+        <dimension name="Weight" xvalue="300"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </instance>
+    <instance familyname="Grex Sans" stylename="Regular">
+      <location>
+        <dimension name="Weight" xvalue="400"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </instance>
+    <instance familyname="Grex Sans" stylename="Text">
+      <location>
+        <dimension name="Weight" xvalue="450"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </instance>
+    <instance familyname="Grex Sans" stylename="Medium">
+      <location>
+        <dimension name="Weight" xvalue="500"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </instance>
+    <instance familyname="Grex Sans" stylename="SemiBold">
+      <location>
+        <dimension name="Weight" xvalue="600"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </instance>
+    <instance familyname="Grex Sans" stylename="Bold">
+      <location>
+        <dimension name="Weight" xvalue="700"/>
+        <dimension name="Grain" xvalue="100"/>
+      </location>
+    </instance>
+  </instances>
+</designspace>

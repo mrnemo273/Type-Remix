@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grex Sans Specimen Explorations</title>
+<style>
+/* Layout idea: a plain contact sheet of the explorations, grouped by brief. */
+:root{--bg:#f4f4f1;--ink:#151515;--muted:#6f6f6a;--line:#d9d9d4;--accent:#e5007e;
+  --display:'Grex Sans','IBM Plex Sans',system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141414;--ink:#f0eee8;--muted:#96948d;--line:#2c2c2c;--accent:#ff5aa8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141414;--ink:#f0eee8;--muted:#96948d;--line:#2c2c2c;--accent:#ff5aa8;color-scheme:dark}
+@font-face{font-family:'Grex Sans';src:url('GrexSans.woff2') format('woff2');font-weight:100 700;font-display:block}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--display);font-variation-settings:'GRAN' 0;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:48px 24px 72px}
+h1{font-size:clamp(48px,8vw,104px);line-height:.95;margin:0 0 14px;font-weight:700;font-variation-settings:'GRAN' 100;letter-spacing:-.02em}
+.sub{color:var(--muted);max-width:60ch;margin:0 0 48px}
+.brief{border-top:2px solid var(--ink);padding-top:14px}
+.brief .tag{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.brief .tag b{color:var(--accent)}
+.brief p{margin:6px 0 22px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+a.card{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);padding:18px;color:inherit;text-decoration:none;min-height:240px}
+a.card:hover{border-color:var(--ink)}
+a.card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.lvl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.card .nm{font-size:40px;line-height:1;font-weight:700}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.card .go{margin-top:auto;font-size:14px;font-weight:600}
+@media (max-width:820px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div class="wrap">
+  <h1>Grex Sans</h1>
+  <p class="sub">Specimen explorations for Grex Sans, IBM Plex Sans with a variable grain axis. Weight 100–700, grain 0–100, 366 characters. Newest brief first.</p>
+  <div class="brief" style="margin-bottom:56px">
+    <div class="tag"><b>Brief 03</b> · A new top for Wear test, extended and In chapters: just the font name</div>
+    <p>Three heroes, each built from the name alone. Each link opens a page with that hero; the <b>Hero 1 2 3</b> switch in the bottom-right swaps them in place on either page.</p>
+    <div class="cards">
+      <a class="card" href="b2-mild.html#hero-1"><span class="lvl">Mild · Hero 1</span><span class="nm" style="font-variation-settings:'GRAN' 100">Masthead</span><p>"Grex Sans" at Bold and full grain, sized to the exact width of the page, with the key facts ruled off underneath.</p><span class="go">On Wear test, extended →</span></a>
+      <a class="card" href="b2-medium.html#hero-2"><span class="lvl">Medium · Hero 2</span><span class="nm"><span style="font-weight:100;font-variation-settings:'GRAN' 0">Clean</span> <span style="font-variation-settings:'GRAN' 100">to worn</span></span><p>The name as the axis: each letter one step heavier and grainier than the last, from a clean Thin G to a worn Bold s. The ramp drifts slowly back and forth.</p><span class="go">On In chapters →</span></a>
+      <a class="card" href="b2-mild.html#hero-3"><span class="lvl">Wild · Hero 3</span><span class="nm" style="color:#0078bf;font-variation-settings:'GRAN' 100">Misregistered</span><p>Two riso passes of the name, pink and blue at different grain, printed slightly off register. Moving the pointer slides the plates apart and back.</p><span class="go">On Wear test, extended →</span></a>
+    </div>
+  </div>
+  <div class="brief" style="margin-bottom:56px">
+    <div class="tag"><b>Brief 02</b> · Build on the Wear test: longer, full-screen and responsive, with the good parts of Press proof and many more examples in use</div>
+    <p>Three directions. All edge to edge, all with the outline view, size and weight proofs, and fourteen in-use examples.</p>
+    <div class="cards">
+      <a class="card" href="b2-mild.html"><span class="lvl">Mild</span><span class="nm" style="font-weight:600;font-variation-settings:'GRAN' 40">Wear test, extended</span><p>The Wear test, full-bleed and twice as long: touch, scroll, a loupe with the weight × grain pad, a size ladder, a weight matrix, a 14-piece in-use wall, prints, features and characters.</p><span class="go">Open →</span></a>
+      <a class="card" href="b2-medium.html"><span class="lvl">Medium</span><span class="nm" style="font-variation-settings:'GRAN' 70">In chapters</span><p>Ten full-bleed chapters, each flooded with one ink and a huge worn number. The in-use work reads as fourteen case studies.</p><span class="go">Open →</span></a>
+      <a class="card" href="b2-wild.html"><span class="lvl">Wild</span><span class="nm" style="font-variation-settings:'GRAN' 100">Pasteboard</span><p>A riso zine in nine full-screen spreads. A loupe finds the grain under clean Plex, the prints sit on a cutting mat you can drag around, and you size the type by pulling a corner.</p><span class="go">Open →</span></a>
+    </div>
+  </div>
+  <div class="brief">
+    <div class="tag"><b>Brief 01</b> · A specimen page like Allo</div>
+    <p>Three directions, from right on the brief to unconventional.</p>
+    <div class="cards">
+      <a class="card" href="mild.html"><span class="lvl">Mild</span><span class="nm" style="font-weight:500;font-variation-settings:'GRAN' 30">Allo, straight</span><p>Allo's structure on a dark sheet: greeting wall, axis sliders, grain-by-size ladder, features, type tester, glyph inspector with point counts.</p><span class="go">Open →</span></a>
+      <a class="card" href="medium.html"><span class="lvl">Medium</span><span class="nm" style="font-variation-settings:'GRAN' 65">Press proof</span><p>The specimen as a printer's proof sheet. A weight × grain pad, an "As drawn" view showing every point of the grain, and proofs by size and weight.</p><span class="go">Open →</span></a>
+      <a class="card" href="wild.html"><span class="lvl">Wild</span><span class="nm" style="font-variation-settings:'GRAN' 100">Wear test</span><p>The font as a material. Wear the headline down by touching it, watch text age as you scroll, pull riso-style overprint posters.</p><span class="go">Open →</span></a>
+    </div>
+  </div>
+</div></body>
+</html>

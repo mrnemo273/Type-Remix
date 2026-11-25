@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Type Specimen Explorations</title>
+<style>
+/* Layout idea: a plain contact sheet of the explorations, grouped by brief. */
+:root{--bg:#f4f4f1;--ink:#151515;--muted:#6f6f6a;--line:#d9d9d4;--accent:#e5007e;
+  --display:'Grex Sans','IBM Plex Sans',system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141414;--ink:#f0eee8;--muted:#96948d;--line:#2c2c2c;--accent:#ff5aa8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141414;--ink:#f0eee8;--muted:#96948d;--line:#2c2c2c;--accent:#ff5aa8;color-scheme:dark}
+@font-face{font-family:'Grex Sans';src:url('GrexSans.woff2') format('woff2'),url('../grex-sans/font.woff2') format('woff2');font-weight:100 700;font-display:block}
+@font-face{font-family:'News Press';src:url('news-press/brief-04-mild/font.woff2') format('woff2');font-weight:200 800;font-display:block}
+.font-h{font-size:clamp(32px,4vw,48px);margin:72px 0 24px;font-weight:700;line-height:1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--display);font-variation-settings:'GRAN' 0;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:48px 24px 72px}
+h1{font-size:clamp(48px,8vw,104px);line-height:.95;margin:0 0 14px;font-weight:700;font-variation-settings:'GRAN' 100;letter-spacing:-.02em}
+.sub{color:var(--muted);max-width:60ch;margin:0 0 48px}
+.brief{border-top:2px solid var(--ink);padding-top:14px}
+.brief .tag{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.brief .tag b{color:var(--accent)}
+.brief p{margin:6px 0 22px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+a.card{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);padding:18px;color:inherit;text-decoration:none;min-height:240px}
+a.card:hover{border-color:var(--ink)}
+a.card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.lvl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.card .nm{font-size:40px;line-height:1;font-weight:700}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.card .go{margin-top:auto;font-size:14px;font-weight:600}
+@media (max-width:820px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div class="wrap">
+  <h1>Explorations</h1>
+  <p class="sub">Specimen explorations for the type catalogue, grouped by page and by brief. Newest brief first.</p>
+  <h2 class="font-h" style="margin-top:0">Home page</h2>
+  <div class="brief" style="margin-bottom:56px">
+    <div class="tag"><b>Brief 05</b> · Animate the word Remix in the home page title, every 6 to 7 seconds, with the hero click sound</div>
+    <p>"Type-" stays put; "Remix" drops in letter by letter in the 1 · 2 3 · 4 rhythm, and the whole title resizes to fill the width as it lands. Click anywhere once to hear it. Also tried: Middle across the whole title, with the page held still (<a href="home/brief-05-chosen/index.html">open it</a>). <b>Decision: keep the home title static in Instrument Sans.</b></p>
+    <div class="cards">
+      <a class="card" href="home/brief-05-mild/index.html"><span class="lvl">Mild</span><span class="nm" style="font-family:'Grex Sans';font-variation-settings:'GRAN' 60">Remix</span><p>Each change remixes the whole word in one of the three fonts at one setting, never the same font twice in a row.</p><span class="go">Open →</span></a>
+      <a class="card" href="home/brief-05-middle/index.html"><span class="lvl">Middle</span><span class="nm"><span style="font-family:'Grex Sans';font-variation-settings:'GRAN' 100">Re</span><span style="font-family:'News Press';font-variation-settings:'PRES' 80">mi</span><span style="font-family:'Grex Sans';font-weight:300;font-variation-settings:'GRAN' 0">x</span></span><p>Every letter lands in its own font and setting, so the word is always a mix of the remixes.</p><span class="go">Open →</span></a>
+      <a class="card" href="home/brief-05-wild/index.html"><span class="lvl">Wild</span><span class="nm"><span style="font-family:'News Press';display:inline-block;rotate:-4deg;font-variation-settings:'PRES' 100">R</span><span style="font-family:'Grex Sans';display:inline-block;rotate:3deg;font-variation-settings:'GRAN' 100">e</span><span style="font-family:'News Press';display:inline-block;rotate:-2deg;font-weight:800">m</span><span style="font-family:'Grex Sans';display:inline-block;rotate:4deg;font-weight:200">i</span><span style="font-family:'News Press';display:inline-block;rotate:-3deg;font-variation-settings:'PRES' 60">x</span></span><p>A type case spilled: every letter in a random font and weight, each one set a little off its neighbours, tilted and off the baseline.</p><span class="go">Open →</span></a>
+    </div>
+  </div>
+  <h2 class="font-h" style="font-family:'News Press';font-variation-settings:'PRES' 60;">News Press</h2>
+  <div class="brief" style="margin-bottom:56px">
+    <div class="tag"><b>Brief 04</b> · Replace the overprint section with something editorial: font pairings, thin with bold</div>
+    <p>Three directions for the same spot on the News Press page. Each link opens the full page at that section. <b>Chosen: Mild, Pairings</b>, now on the News Press specimen.</p>
+    <div class="cards">
+      <a class="card" href="news-press/brief-04-mild/index.html#printS"><span class="lvl">Mild</span><span class="nm" style="font-family:'News Press';font-weight:200;font-variation-settings:'wght' 200,'PRES' 0">Pair<b style="font-weight:800;font-variation-settings:'wght' 800,'PRES' 100">ings</b></span><p>Six editorial pages, each pairing two settings of News Press: light with bold, bold with italic, a pull quote, contents, an interview, one weight at two pressures. Pull a fresh set for new copy and pairs.</p><span class="go">Open →</span></a>
+      <a class="card" href="news-press/brief-04-middle/index.html#printS"><span class="lvl">Middle</span><span class="nm" style="font-family:'News Press';font-variation-settings:'wght' 700,'PRES' 60">Pairs well with</span><p>The same kind of pages, set in News Press with Worked Sans and Grex Sans from the catalogue. Each caption names both faces.</p><span class="go">Open →</span></a>
+      <a class="card" href="news-press/brief-04-wild/index.html#printS"><span class="lvl">Wild</span><span class="nm" style="font-family:'News Press';font-style:normal;font-variation-settings:'wght' 300,'PRES' 20">The spread</span><p>One full-width magazine spread with a contrast slider that pulls the headline and text apart. Next layout cycles a feature, an interview and a contents page.</p><span class="go">Open →</span></a>
+    </div>
+  </div>
+  <h2 class="font-h">Grex Sans</h2>
+  <div class="brief" style="margin-bottom:56px">
+    <div class="tag"><b>Chosen direction</b> · Wear test, extended, with the Masthead hero, refined</div>
+    <p>The single execution going forward, and the template for future fonts.</p>
+    <div class="cards" style="grid-template-columns:1fr">
+      <a class="card" href="specimen.html" style="min-height:0"><span class="lvl">Specimen</span><span class="nm" style="font-size:clamp(40px,6vw,80px);font-variation-settings:'GRAN' 100">Grex Sans</span><p>Black-and-white masthead with the name cycling through both axes, clearer font options, the scroll test with instructions, and an overprint set of six compositions.</p><span class="go">Open →</span></a>
+    </div>
+  </div>
+  <div class="brief" style="margin-bottom:56px">
+    <div class="tag"><b>Brief 03</b> · A new top for Wear test, extended and In chapters: just the font name</div>
+    <p>Three heroes, each built from the name alone. Each link opens a page with that hero; the <b>Hero 1 2 3</b> switch in the bottom-right swaps them in place on either page.</p>
+    <div class="cards">
+      <a class="card" href="b2-mild.html#hero-1"><span class="lvl">Mild · Hero 1</span><span class="nm" style="font-variation-settings:'GRAN' 100">Masthead</span><p>"Grex Sans" at Bold and full grain, sized to the exact width of the page, with the key facts ruled off underneath.</p><span class="go">On Wear test, extended →</span></a>
+      <a class="card" href="b2-medium.html#hero-2"><span class="lvl">Medium · Hero 2</span><span class="nm"><span style="font-weight:100;font-variation-settings:'GRAN' 0">Clean</span> <span style="font-variation-settings:'GRAN' 100">to worn</span></span><p>The name as the axis: each letter one step heavier and grainier than the last, from a clean Thin G to a worn Bold s. The ramp drifts slowly back and forth.</p><span class="go">On In chapters →</span></a>
+      <a class="card" href="b2-mild.html#hero-3"><span class="lvl">Wild · Hero 3</span><span class="nm" style="color:#0078bf;font-variation-settings:'GRAN' 100">Misregistered</span><p>Two riso passes of the name, pink and blue at different grain, printed slightly off register. Moving the pointer slides the plates apart and back.</p><span class="go">On Wear test, extended →</span></a>
+    </div>
+  </div>
+  <div class="brief" style="margin-bottom:56px">
+    <div class="tag"><b>Brief 02</b> · Build on the Wear test: longer, full-screen and responsive, with the good parts of Press proof and many more examples in use</div>
+    <p>Three directions. All edge to edge, all with the outline view, size and weight proofs, and fourteen in-use examples.</p>
+    <div class="cards">
+      <a class="card" href="b2-mild.html"><span class="lvl">Mild</span><span class="nm" style="font-weight:600;font-variation-settings:'GRAN' 40">Wear test, extended</span><p>The Wear test, full-bleed and twice as long: touch, scroll, a loupe with the weight × grain pad, a size ladder, a weight matrix, a 14-piece in-use wall, prints, features and characters.</p><span class="go">Open →</span></a>
+      <a class="card" href="b2-medium.html"><span class="lvl">Medium</span><span class="nm" style="font-variation-settings:'GRAN' 70">In chapters</span><p>Ten full-bleed chapters, each flooded with one ink and a huge worn number. The in-use work reads as fourteen case studies.</p><span class="go">Open →</span></a>
+      <a class="card" href="b2-wild.html"><span class="lvl">Wild</span><span class="nm" style="font-variation-settings:'GRAN' 100">Pasteboard</span><p>A riso zine in nine full-screen spreads. A loupe finds the grain under clean Plex, the prints sit on a cutting mat you can drag around, and you size the type by pulling a corner.</p><span class="go">Open →</span></a>
+    </div>
+  </div>
+  <div class="brief">
+    <div class="tag"><b>Brief 01</b> · A specimen page like Allo</div>
+    <p>Three directions, from right on the brief to unconventional.</p>
+    <div class="cards">
+      <a class="card" href="mild.html"><span class="lvl">Mild</span><span class="nm" style="font-weight:500;font-variation-settings:'GRAN' 30">Allo, straight</span><p>Allo's structure on a dark sheet: greeting wall, axis sliders, grain-by-size ladder, features, type tester, glyph inspector with point counts.</p><span class="go">Open →</span></a>
+      <a class="card" href="medium.html"><span class="lvl">Medium</span><span class="nm" style="font-variation-settings:'GRAN' 65">Press proof</span><p>The specimen as a printer's proof sheet. A weight × grain pad, an "As drawn" view showing every point of the grain, and proofs by size and weight.</p><span class="go">Open →</span></a>
+      <a class="card" href="wild.html"><span class="lvl">Wild</span><span class="nm" style="font-variation-settings:'GRAN' 100">Wear test</span><p>The font as a material. Wear the headline down by touching it, watch text age as you scroll, pull riso-style overprint posters.</p><span class="go">Open →</span></a>
+    </div>
+  </div>
+</div></body>
+</html>

@@ -1,0 +1,153 @@
+{
+  "name": "Worked Sans",
+  "slug": "worked-sans",
+  "version": "1.0",
+  "font": "../../fonts/worked-sans/fonts/WorkedSans[WORK,wght].ttf",
+  "italic": "../../fonts/worked-sans/fonts/WorkedSans-Italic[WORK,wght].ttf",
+  "tagline": "Work Sans, worn in by hand",
+  "base": {
+    "name": "Work Sans",
+    "path": "../../fonts/worked-sans/src/WorkSans[wght].ttf",
+    "by": "Wei Huang",
+    "url": "https://github.com/weiweihuanghuang/Work-Sans",
+    "copyright": "Copyright 2019 The Work Sans Project Authors"
+  },
+  "axes": {
+    "wght": {
+      "label": "Weight",
+      "from": "Thin",
+      "to": "Black",
+      "desc": "Thin to Black, any value in between"
+    },
+    "WORK": {
+      "label": "Worked",
+      "from": "lightly worked",
+      "to": "roughest",
+      "desc": "Lightly worked to rough; 80 is the default"
+    }
+  },
+  "ui": {
+    "wght": 400,
+    "WORK": 0
+  },
+  "display": {
+    "wght": 700,
+    "WORK": 80
+  },
+  "heroMotion": {
+    "style": "staccato",
+    "hold": 2.6,
+    "stagger": 45,
+    "press": 0.06,
+    "duration": 260,
+    "steps": 5,
+    "floor": {
+      "WORK": 40
+    }
+  },
+  "heroCaption": "Every few seconds the whole name clicks to a new weight and a new amount of wear, from Thin to Black and lightly worked to roughest.",
+  "charsNote": "Extended Latin, figures, punctuation, symbols",
+  "featuresNote": "Stylistic sets, small caps, swashes, fractions, oldstyle and tabular figures",
+  "scroll": {
+    "sentence": "Every line gets a little more handled.",
+    "instruction": "Scroll slowly through this section. The sentence starts at Thin and lightly worked and ends at Black and roughest: the same font file, both axes moving together as you read."
+  },
+  "loupe": {
+    "title": "Hand-cut, point by point.",
+    "text": "Every straight edge is cut into short facets, each nudged a little off the line, and every corner is rounded. Drag the pad for weight and wear, then switch to the outlines to see what Work Sans turns into."
+  },
+  "drawn": {
+    "word": "Hand",
+    "axes": [
+      "wght",
+      "WORK"
+    ],
+    "start": {
+      "wght": 600,
+      "WORK": 80
+    }
+  },
+  "size": {
+    "axis": "WORK",
+    "fromPx": 14,
+    "toPx": 110,
+    "title": "Wear that knows its size.",
+    "text": "The roughness is drawn into the outlines, so it scales with the type. Tie the Worked axis to font size and text stays calm while headlines carry the hand. This ladder does exactly that.",
+    "sentence": "Cut by hand, set by eye, read with ease."
+  },
+  "matrix": {
+    "title": "Nine weights, three wears.",
+    "text": "Every weight from Thin to Black across, lightly worked to roughest down. The texture is the same size at every weight, so Black looks carved and Thin looks drawn."
+  },
+  "inuse": {
+    "axis": "WORK",
+    "max": 80,
+    "cards": [
+      "seeds",
+      "jam",
+      "studio",
+      "marker",
+      "zine",
+      "pricecard",
+      "repairtag",
+      "workshop",
+      "notebook",
+      "carelabel",
+      "cider",
+      "window"
+    ],
+    "text": "Twelve jobs for a handmade typeface: a seed packet, a jam label, a studio sign, a plant marker, a zine, a market price card, a repair ticket, a workshop poster, a notebook, a care label, a cider label and a shop window. Each card notes the settings its headline uses."
+  },
+  "overprint": {
+    "style": "edges",
+    "axis": "WORK",
+    "title": "Edge proofs.",
+    "text": "Each card prints one letter twice, exactly in register: pink at Worked 0, blue at Worked 100. Where the two agree the ink prints dark. The coloured rim is the difference: every bit of edge that working the letter in has moved. Pull a fresh set for new letters and crops."
+  },
+  "run": {
+    "axis": "WORK",
+    "fixed": {
+      "wght": 800
+    },
+    "word": "Hand",
+    "title": "Twelve steps of wear.",
+    "text": "The same word from lightly worked to roughest. Each is one setting of the Worked axis; nothing here is an image."
+  },
+  "italicSection": {
+    "title": "Italic, worked too.",
+    "sample": "Handmade, not hand-waved.",
+    "text": "A true italic from Work Sans, worked in the same way, with the same weight and Worked axes."
+  },
+  "features": {
+    "title": "Everything Work Sans does.",
+    "text": "Stylistic sets, small caps, swashes, figures and fractions all carry over from Work Sans. Changed glyphs in pink.",
+    "names": {
+      "ss01": "Alternate g",
+      "ss02": "Alternate l",
+      "ss03": "Alternate R",
+      "ss04": "Alternate G",
+      "ss05": "Dutch IJ",
+      "ss06": "Alternate a",
+      "swsh": "Swashes"
+    },
+    "samples": {
+      "ss01": "Giggling geography",
+      "ss02": "Little lilies",
+      "ss03": "RIVER ROAD",
+      "ss04": "GREAT GORGE",
+      "ss05": "Ĳsselmeer",
+      "ss06": "Papaya banana",
+      "swsh": "Mary Wants Tea"
+    }
+  },
+  "characters": {
+    "text": "Every character in the font at Bold, Worked 80. Hover one to see it at text settings."
+  },
+  "files": "WorkedSans[WORK,wght].ttf and WorkedSans-Italic[WORK,wght].ttf for desktop, .woff2 for web, in Type/fonts/worked-sans/fonts.",
+  "license": "SIL Open Font License 1.1. Built on Work Sans by Wei Huang. Worked treatment by JC Morales.",
+  "remix": {
+    "ingredient": "Wear",
+    "note": "Remixed with wear: softened corners and a hand-drawn wobble"
+  },
+  "brief": "Work Sans is a friendly workhorse, but it can feel a little too tidy. The brief was a worked-in version: corners softened and straight lines bowed a hair, as if each letter had been redrawn by hand, with no grain or distress. Keep the Work axis low for text and push it up for headlines. Made for warm brands, menus, packaging, signage and anything that should feel handmade."
+}

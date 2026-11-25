@@ -1,0 +1,25 @@
+{
+  "title": "Type-Remix",
+  "parent": {
+    "name": "Juanemo",
+    "url": "https://juanemo.com",
+    "blurb": "a collection of experiments with design and AI"
+  },
+  "intro": [
+    "Type-Remix is a creative experiment in seeing what else a typeface can become. I start with an open-source font, add a new ingredient, and see where it takes me. I think of it like a producer remixing a track: the original is still there, but the personality shifts. Some fonts will get more than one remix, each with a different idea behind it.",
+    "We have more tools now to make type our own, so I don’t have to use a font exactly as it comes. I can shape it to better fit the voice and character of what I’m trying to say. This project gives me a place to play with that idea, taking fonts that can feel generic and pushing them somewhere more personal."
+  ],
+  "license": {
+    "name": "SIL Open Font License 1.1",
+    "url": "https://openfontlicense.org/"
+  },
+  "about": {
+    "name": "Juan-Carlos Morales",
+    "photo": "assets/author.png",
+    "email": "juan@chameleon.co",
+    "linkedin": "https://www.linkedin.com/in/jmorales273/",
+    "bio": "is an Interim Executive Creative Director at <a href=\"https://chameleoncollective.com/\" target=\"_blank\" rel=\"noopener\">Chameleon Collective</a> and a veteran design leader with more than two decades of experience across brand, marketing, and digital product design. Throughout his career, he has helped organizations rethink how creativity can drive business growth, working with companies such as YouTube, Breeze Airways, Polaroid, and Bugaboo. Known for working in the space between disciplines, he specializes in connecting design, technology, and business strategy to solve complex problems."
+  },
+  "copyright": "© 2026 Juan-Carlos Morales",
+  "domain": "juanemo.com"
+}

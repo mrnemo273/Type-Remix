@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grex Sans — Wear Test, Extended</title>
+<style>
+/* Layout idea: the Wear test, edge to edge and longer — every section full-bleed, a fluid gutter, riso inks on white. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#76766f; --rule:#e2e2dd; --tint:#f4f4f0;
+  --pink:#ff48b0; --blue:#0078bf; --yellow:#ffe800;
+  --gut:clamp(16px,3.2vw,56px);
+  --display:'Grex Sans','IBM Plex Sans',system-ui,sans-serif;
+  color-scheme:light;
+}
+@font-face{font-family:'Grex Sans';src:url('GrexSans.woff2') format('woff2');font-weight:100 700;font-display:block}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{font-family:var(--display);font-variation-settings:'GRAN' 0;line-height:1.45;overflow-x:hidden}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.small{font-size:12px;letter-spacing:.07em;text-transform:uppercase;font-weight:600}
+.btn{font:inherit;font-size:13px;font-weight:600;border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:9px 15px;cursor:pointer}
+.btn:hover{background:var(--ink);color:var(--paper)}
+section{padding:clamp(48px,7vw,110px) var(--gut)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:var(--gut);align-items:end;margin-bottom:clamp(24px,3.4vw,48px)}
+.head h2{font-size:clamp(34px,5.4vw,88px);line-height:.95;margin:0;font-weight:700;font-variation-settings:'GRAN' 100;letter-spacing:-.02em}
+.head p{margin:0;color:#444;max-width:56ch;font-size:clamp(15px,1.15vw,18px)}
+.num{display:block;margin-bottom:10px;color:var(--muted)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px var(--gut);gap:12px;flex-wrap:wrap}
+nav a{color:inherit}
+
+/* 1 touch */
+.touch{padding-top:8px}
+.hint{color:var(--muted);font-size:clamp(14px,1.1vw,17px);margin:0 0 10px;max-width:60ch}
+#line{font-size:clamp(50px,10.6vw,240px);line-height:.92;letter-spacing:-.025em;font-weight:700;user-select:none;cursor:crosshair;touch-action:pan-y}
+#line .wd{display:inline-block;white-space:nowrap}#line span{display:inline-block}#line .sp{width:.22em}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px}
+.bar input{font:inherit;font-size:15px;border:0;border-bottom:2px solid var(--ink);padding:6px 2px;width:min(360px,100%);background:transparent}
+
+/* 2 scroll */
+.scroll{height:250vh;position:relative;background:var(--ink);color:var(--paper);padding:0}
+.stick{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:var(--gut);overflow:hidden}
+#read{font-size:clamp(40px,8.6vw,180px);line-height:.98;letter-spacing:-.015em;max-width:15ch;text-wrap:balance}
+.gauge{display:flex;gap:18px;margin-top:28px;color:#aaa;font-variant-numeric:tabular-nums}.gauge b{color:var(--yellow)}
+.prog{height:3px;background:#333;margin-top:10px;width:min(560px,100%)}.prog i{display:block;height:100%;background:var(--yellow);width:0}
+
+/* 3 loupe */
+.loupe{background:var(--tint)}
+.lgrid{display:grid;grid-template-columns:minmax(0,1fr) clamp(220px,22vw,340px);gap:var(--gut);align-items:stretch}
+.stage{position:relative;background:var(--paper);min-height:clamp(260px,38vw,620px);border:1px solid var(--rule)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.stage .set{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(90px,19vw,380px);line-height:1}
+.stage.drawn .set{visibility:hidden}.stage:not(.drawn) canvas{visibility:hidden}
+.side{display:flex;flex-direction:column;gap:14px}
+.pad{position:relative;aspect-ratio:1;background:var(--paper);border:2px solid var(--ink);cursor:crosshair;touch-action:none;
+  background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:25% 25%}
+.pad::before,.pad::after{content:"";position:absolute;background:var(--pink)}
+.pad::before{left:0;right:0;height:1px;top:var(--py)}.pad::after{top:0;bottom:0;width:1px;left:var(--px)}
+.pad .dot{position:absolute;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 3px var(--paper);z-index:1}
+.pad .ax{position:absolute;color:var(--muted);font-size:11px}
+.read{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.read b{display:block;font-size:clamp(20px,1.8vw,28px);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:0;text-transform:none;color:var(--ink)}
+.read div{color:var(--muted)}
+.seg{display:flex}.seg button{flex:1}.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg button+button{border-left:0}
+
+/* 4 size */
+.ladder .r{display:grid;grid-template-columns:clamp(70px,8vw,120px) minmax(0,1fr);gap:16px;align-items:baseline;border-top:1px solid var(--rule);padding:10px 0}
+.ladder .r .t{white-space:nowrap;overflow:hidden}
+.ladder .m{color:var(--muted);font-variant-numeric:tabular-nums}.ladder .m b{color:var(--pink)}
+
+/* 5 matrix */
+.matrix{display:grid;grid-template-columns:clamp(44px,5vw,80px) repeat(7,minmax(0,1fr));border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.matrix>div{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:clamp(28px,6.2vw,120px);line-height:1.2;padding:4px 0}
+.matrix>.h{font-size:11px;color:var(--muted)}
+
+/* 6 in use */
+.uses{columns:4 300px;column-gap:clamp(12px,1.6vw,24px)}
+.uses figure{break-inside:avoid;margin:0 0 clamp(12px,1.6vw,24px)}
+.uses .frame{box-shadow:0 0 0 1px var(--rule)}
+.uses figcaption{display:flex;flex-direction:column;gap:2px;padding:10px 2px 0;font-size:13px}
+.uses figcaption span{color:var(--muted)}
+
+/* 7 press */
+.press{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:var(--gut);align-items:start}
+.poster{position:relative;aspect-ratio:3/4;background:#fffdf8;overflow:hidden;box-shadow:0 0 0 1px var(--rule);isolation:isolate}
+.poster .cap{position:absolute;left:4%;bottom:3%;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;mix-blend-mode:multiply}
+
+/* 8 run */
+.eds{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-left:1px solid var(--rule);border-top:1px solid var(--rule)}
+.ed{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:clamp(10px,1.2vw,18px);display:flex;flex-direction:column;gap:6px}
+.ed .w{font-size:clamp(36px,5vw,96px);line-height:1;font-weight:700}
+.ed .n{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+
+/* 9 features */
+.feats{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.f{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:18px;display:flex;flex-direction:column;gap:10px}
+.f .s{font-size:clamp(26px,2.6vw,42px);line-height:1.1;font-variation-settings:'GRAN' 100}
+.f .s.off{color:#b4b4ae}.hl{color:var(--pink)}
+
+/* 10 glyphs */
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(52px,5vw,84px),1fr));border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.gl span{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:clamp(26px,2.8vw,46px);font-variation-settings:'GRAN' 100;transition:font-variation-settings .2s}
+.gl span:hover{font-variation-settings:'GRAN' 0;background:var(--yellow)}
+footer{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut);padding:40px var(--gut) 80px;border-top:2px solid var(--ink)}
+footer p{margin:6px 0 0;color:#444;font-size:14px}
+code{font-size:12px;background:var(--tint);padding:2px 5px}
+
+@media (max-width:900px){
+  .head,.lgrid,.press,footer{grid-template-columns:1fr}
+  .eds{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .matrix{grid-template-columns:40px repeat(4,minmax(0,1fr))}.matrix .xw{display:none}
+  .side{flex-direction:row;flex-wrap:wrap}.side .pad{width:min(100%,260px)}.side>div:not(.pad){flex:1 1 200px}
+}
+@media (prefers-reduced-motion:reduce){.scroll{height:auto}.stick{position:static;min-height:0;padding:72px var(--gut)}.gl span{transition:none}}
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#111;color:#fff;font:600 13px/1 'Grex Sans','IBM Plex Sans',system-ui,sans-serif;font-variation-settings:'GRAN' 0;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">← All explorations</a>
+<nav><span class="small">Grex Sans — a wear test</span><a class="small" href="#get">Get the font ↓</a></nav>
+
+<section class="touch" aria-label="Wear the type by touching it">
+  <p class="hint">Move across the letters. Every pass wears them a little more, the way a page wears under a thumb.</p>
+  <div id="line"></div>
+  <div class="bar"><label class="small" for="own">Your line</label><input id="own" value="Touch wears it in." maxlength="40">
+    <button class="btn" id="fresh">Fresh print</button><button class="btn" id="worn">Wear it all</button><span class="small" id="meter" style="color:var(--muted)"></span></div>
+</section>
+
+<section class="scroll" id="scroll" aria-label="Type that wears as you scroll">
+  <div class="stick"><div class="small" style="color:#aaa;margin-bottom:18px">Keep scrolling</div>
+    <div id="read">The longer you read it, the more it gives.</div>
+    <div class="gauge small"><span>Weight <b id="sw">300</b></span><span>Grain <b id="sg">0</b></span></div><div class="prog"><i id="sb"></i></div></div>
+</section>
+
+<section class="loupe">
+  <div class="head"><div><span class="small num">Under the loupe</span><h2>Every speck is a point.</h2></div>
+    <p>The grain isn't a texture laid over the letters. It's drawn into the outlines, and that's why it can vary. Drag the pad for weight and grain, then switch to the outlines to see what IBM Plex Sans turns into.</p></div>
+  <div class="lgrid">
+    <div class="stage drawn" id="stage"><span class="set" id="set">Grex</span><canvas id="cv"></canvas></div>
+    <div class="side">
+      <div class="pad" id="pad" role="slider" tabindex="0" aria-label="Weight across, grain down. Arrow keys adjust.">
+        <div class="dot"></div><span class="ax small" style="right:6px;bottom:4px">Weight →</span><span class="ax small" style="left:6px;top:4px">Grain ↓</span></div>
+      <div class="read small"><div>Weight<b id="rW"></b></div><div>Grain<b id="rG"></b></div><div>Points in Plex<b id="rP"></b></div><div>Points in Grex<b id="rX"></b></div></div>
+      <div class="seg"><button class="btn" id="bSet" aria-pressed="false">As set</button><button class="btn" id="bDr" aria-pressed="true">As drawn</button></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><div><span class="small num">Size</span><h2>Grain that knows its size.</h2></div>
+    <p>Because the grain lives in the outlines it scales with the type. Tie the axis to font size and text stays clean while headlines carry the texture. This ladder does exactly that.</p></div>
+  <div class="ladder" id="ladder"></div>
+</section>
+
+<section style="background:var(--tint)">
+  <div class="head"><div><span class="small num">Weight × grain</span><h2>Bold stays a word.</h2></div>
+    <p>Seven weights across, three grain levels down. Above Regular the grain grows slower than the stroke, so the heavy weights keep their shape.</p></div>
+  <div class="matrix" id="matrix"></div>
+</section>
+
+<section>
+  <div class="head"><div><span class="small num">In use</span><h2>Out in the world.</h2></div>
+    <p>Fourteen jobs for one typeface: packaging, posters, a book, a ticket, signage, a menu and an app. Each card notes the weight and grain it's set at.</p></div>
+  <div class="uses" id="uses"></div>
+</section>
+
+<section class="press" style="background:var(--tint)">
+  <div><span class="small num">Overprint</span><h2 style="font-size:clamp(34px,4.6vw,76px);line-height:.95;margin:0 0 16px;font-variation-settings:'GRAN' 100">Pull a print.</h2>
+    <p style="color:#444;max-width:44ch">Three inks, one typeface, a different grain and weight on every pass. Overprinted the way a riso would, so where the grain knocks out you see the colour underneath.</p>
+    <button class="btn" id="pull">Pull another print</button><p class="small" id="pcount" style="color:var(--muted);margin-top:14px"></p></div>
+  <div class="poster" id="poster"><div class="cap" id="pcap"></div></div>
+</section>
+
+<section>
+  <div class="head"><div><span class="small num">Print run</span><h2>One to twelve.</h2></div>
+    <p>The same word from the first impression to the last. Each is one setting of the grain axis; nothing here is an image.</p></div>
+  <div class="eds" id="eds"></div>
+</section>
+
+<section style="background:var(--tint)">
+  <div class="head"><div><span class="small num">Features</span><h2>Alternates, kept.</h2></div>
+    <p>Everything Plex Sans offers carries over: single-storey a and g, two zeros, oldstyle figures, fractions, super- and subscripts. Changed glyphs in pink.</p></div>
+  <div class="feats" id="feats"></div>
+</section>
+
+<section>
+  <div class="head"><div><span class="small num">Characters</span><h2><span id="cc"></span> glyphs.</h2></div>
+    <p>Latin, punctuation, figures and symbols, each with its own grain. Hover one to see it clean.</p></div>
+  <div class="gl" id="gl"></div>
+</section>
+
+<footer id="get">
+  <div><span class="small">Files</span><p>GrexSans[GRAN,wght].ttf and .woff2 in Type/fonts/grex-sans/fonts.</p></div>
+  <div><span class="small">Axes</span><p><code>font-weight: 100–700</code><br><code>font-variation-settings: 'GRAN' 0–100</code></p></div>
+  <div><span class="small">Licence</span><p>SIL Open Font License 1.1. Built on IBM Plex Sans (Mike Abbink, Bold Monday). Grain by JC Morales.</p></div>
+</footer>
+
+<script src="grex-core.js"></script>
+<script src="inuse.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+document.fonts.ready.then(()=>{
+  const wl=GX.wearLine($('line'),$('own').value,{onWear:v=>$('meter').textContent=`Wear ${v}%`});
+  $('own').oninput=e=>wl.build(e.target.value);$('fresh').onclick=()=>wl.set(0);$('worn').onclick=()=>wl.set(100);
+  let pulls=0;const doPull=()=>{GX.pull($('poster'),['var(--pink)','var(--blue)','var(--yellow)']);pulls++;$('pcap').textContent=`Grex Sans · pull ${String(pulls).padStart(3,'0')}`;$('pcount').textContent=`${pulls} ${pulls==1?'print':'prints'} pulled`};
+  $('pull').onclick=doPull;doPull();
+});
+// scroll wear
+const sc=$('scroll'),rd=$('read');
+const onScroll=()=>{const r=sc.getBoundingClientRect(),t=GX.clamp(-r.top/(r.height-innerHeight),0,1);GX.fvs(rd,300+t*400,t*100);$('sw').textContent=Math.round(300+t*400);$('sg').textContent=Math.round(t*100);$('sb').style.width=t*100+'%'};
+if(GX.reduce){GX.fvs(rd,600,70);$('sw').textContent=600;$('sg').textContent=70;$('sb').style.width='70%'}else{addEventListener('scroll',onScroll,{passive:true});onScroll()}
+// in use
+GREX_INUSE.forEach(e=>$('uses').appendChild(grexUse(e)));
+// print run
+for(let i=0;i<12;i++){const g=Math.round(i/11*100),d=document.createElement('div');d.className='ed';d.innerHTML=`<span class="w">Grex</span><span class="n">${String(i+1).padStart(2,'0')}/12 · GRAN ${g}</span>`;GX.fvs(d.querySelector('.w'),700,g);$('eds').appendChild(d)}
+// matrix
+const ws=[100,200,300,400,500,600,700],M=$('matrix');
+M.insertAdjacentHTML('beforeend','<div class="h small">GRAN</div>'+ws.map(w=>`<div class="h small ${[200,400,600].includes(w)?'xw':''}">${w}</div>`).join(''));
+[0,50,100].forEach(g=>{M.insertAdjacentHTML('beforeend',`<div class="h small">${g}</div>`);ws.forEach(w=>{const c=document.createElement('div');c.textContent='Ag';if([200,400,600].includes(w))c.className='xw';GX.fvs(c,w,g);M.appendChild(c)})});
+// ladder
+const sizes=[12,16,22,32,48,72,110,170];
+sizes.forEach(px=>{const g=GX.grainForSize(px),r=document.createElement('div');r.className='r';r.innerHTML=`<span class="small m">${px}px<br><b>GRAN ${g}</b></span><span class="t" style="font-size:${px}px">Ink takes a little paper with it.</span>`;GX.fvs(r.querySelector('.t'),px>40?600:400,g);$('ladder').appendChild(r)});
+
+GX.load().then(D=>{
+  // loupe
+  const st={w:400,g:100};let drawn=true;const pc=GX.pointCounts(D);$('rP').textContent=pc.plex;$('rX').textContent=pc.grex.toLocaleString();
+  const paint=()=>{GX.fvs($('set'),st.w,st.g);$('rW').textContent=Math.round(st.w);$('rG').textContent=Math.round(st.g);if(drawn)GX.drawWord($('cv'),D,st.w,st.g,{ink:'#111',fill:'rgba(0,120,191,.08)',dot:'#ff48b0',line:'#e2e2dd'})};
+  GX.pad($('pad'),st,paint);
+  const mode=d=>{drawn=d;$('stage').classList.toggle('drawn',d);$('bSet').setAttribute('aria-pressed',!d);$('bDr').setAttribute('aria-pressed',d);paint()};
+  $('bSet').onclick=()=>mode(false);$('bDr').onclick=()=>mode(true);addEventListener('resize',paint);
+  // features
+  D.features.forEach(f=>{const d=document.createElement('div');d.className='f';d.innerHTML=`<span class="small">${f.tag} · <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400">${f.name}</span></span><span class="s off">${f.sample}</span><span class="s" style="font-feature-settings:'${f.tag}' 1">${GX.featHTML(f)}</span>`;$('feats').appendChild(d)});
+  // glyphs
+  $('cc').textContent=D.glyphs.length;D.glyphs.forEach(g=>{const s=document.createElement('span');s.textContent=String.fromCodePoint(g[0]);s.title=`${g[1]} · U+${g[0].toString(16).toUpperCase().padStart(4,'0')} · ${g[2]} → ${g[3]} points`;$('gl').appendChild(s)});
+});
+</script>
+</body>
+</html>

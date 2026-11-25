@@ -1,0 +1,10 @@
+# Type-Remix: the specimen site and the font sources.
+# Kept out of the repo: old assets, reference material and files waiting to be deleted.
+/Assets/
+/_reference/
+/_to_delete/
+
+# system and build clutter
+.DS_Store
+__pycache__/
+*.pyc

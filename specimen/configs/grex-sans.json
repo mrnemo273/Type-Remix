@@ -1,0 +1,121 @@
+{
+  "name": "Grex Sans",
+  "slug": "grex-sans",
+  "version": "2.0",
+  "font": "../../fonts/grex-sans/fonts/GrexSans[GRAN,wght].ttf",
+  "tagline": "IBM Plex Sans with a little grit in the mix",
+  "base": {
+    "name": "IBM Plex Sans",
+    "path": "../../fonts/grex-sans/src/PlexSansVar-Roman.ttf",
+    "by": "Mike Abbink with Bold Monday, for IBM",
+    "url": "https://github.com/IBM/plex",
+    "copyright": "Copyright © 2017 IBM Corp., with Reserved Font Name “Plex”",
+    "trademark": "IBM Plex is a trademark of IBM Corp."
+  },
+  "axes": {
+    "wght": {
+      "label": "Weight",
+      "from": "Thin",
+      "to": "Bold",
+      "desc": "Thin to Bold, any value in between"
+    },
+    "GRAN": {
+      "label": "Grain",
+      "from": "clean",
+      "to": "fully worn",
+      "desc": "Clean IBM Plex Sans to fully worn"
+    }
+  },
+  "ui": {
+    "wght": 400,
+    "GRAN": 0
+  },
+  "display": {
+    "wght": 700,
+    "GRAN": 100
+  },
+  "heroMotion": {
+    "style": "staccato",
+    "hold": 2.6,
+    "stagger": 45,
+    "press": 0.06,
+    "duration": 260,
+    "steps": 5,
+    "floor": {
+      "GRAN": 25
+    }
+  },
+  "heroCaption": "Every few seconds the whole name clicks to a new weight and grain, anywhere from Thin to Bold and lightly to fully worn.",
+  "charsNote": "Latin, figures, punctuation, symbols",
+  "featuresNote": "Alternate a and g, zeros, fractions, oldstyle figures",
+  "scroll": {
+    "sentence": "The longer you read it, the more it gives.",
+    "instruction": "Scroll slowly through this section. The sentence below starts at Light with no grain and ends at Bold with full grain: the same font file, both axes moving together as you read."
+  },
+  "loupe": {
+    "title": "Every speck is a point.",
+    "text": "The grain isn't a texture laid over the letters. It's drawn into the outlines, and that's why it can vary. Drag the pad for weight and grain, then switch to the outlines to see what IBM Plex Sans turns into."
+  },
+  "drawn": {
+    "word": "Grex",
+    "axes": [
+      "wght",
+      "GRAN"
+    ]
+  },
+  "size": {
+    "axis": "GRAN",
+    "fromPx": 14,
+    "toPx": 110,
+    "title": "Grain that knows its size.",
+    "text": "Because the grain lives in the outlines it scales with the type. Tie the axis to font size and text stays clean while headlines carry the texture. This ladder does exactly that.",
+    "sentence": "Ink takes a little paper with it."
+  },
+  "matrix": {
+    "title": "Bold stays a word.",
+    "text": "Seven weights across, three grain levels down. Above Regular the grain grows slower than the stroke, so the heavy weights keep their shape."
+  },
+  "inuse": {
+    "axis": "GRAN"
+  },
+  "overprint": {
+    "text": "Grex Sans was made for overprinting. Layer two or three inks and the knockouts in each pass let the colour underneath show through, the way a riso or a screenprint would. Six compositions, each a different way of stacking the passes."
+  },
+  "run": {
+    "axis": "GRAN",
+    "fixed": {
+      "wght": 700
+    },
+    "word": "Grex",
+    "text": "The same word from the first impression to the last. Each is one setting of the grain axis; nothing here is an image."
+  },
+  "features": {
+    "title": "Alternates, kept.",
+    "text": "Everything Plex Sans offers carries over: single-storey a and g, two zeros, oldstyle figures, fractions, super- and subscripts. Changed glyphs in pink.",
+    "names": {
+      "ss01": "Single-storey a",
+      "ss02": "Single-storey g",
+      "ss03": "Slashed zero",
+      "ss04": "Dotted zero",
+      "ss05": "Alternate Eszett"
+    },
+    "samples": {
+      "ss01": "Papaya banana",
+      "ss02": "Giggling geography",
+      "ss03": "Room 1050",
+      "ss04": "Code 0040",
+      "ss05": "Straße"
+    }
+  },
+  "characters": {
+    "text": "Latin, punctuation, figures and symbols, each with its own grain. Hover one to see it clean."
+  },
+  "files": "GrexSans[GRAN,wght].ttf for desktop and .woff2 for web, in Type/fonts/grex-sans/fonts.",
+  "license": "SIL Open Font License 1.1. Built on IBM Plex Sans (Mike Abbink, Bold Monday). Grain by JC Morales.",
+  "heroTracking": -0.02,
+  "remix": {
+    "ingredient": "Grit",
+    "note": "Remixed with a little grit: knockouts, specks and a ragged edge"
+  },
+  "brief": "IBM Plex Sans is sharp, rational and everywhere. The brief was to make it feel printed rather than rendered: grain knocked out of the strokes, specks around the edges, the look of type that's been stamped and handled, without losing Plex's clarity. The grain sits on its own axis, so it can stay clean in text and get rough in headlines. Made for posters, editorial headers, packaging and brands that want a little texture."
+}

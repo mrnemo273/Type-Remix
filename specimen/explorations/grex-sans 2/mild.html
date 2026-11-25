@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grex Sans Specimen — Mild</title>
+<style>
+/* Layout idea: Allo's structure, one dark sheet, every section demonstrates one thing the font actually does. */
+:root{
+  --bg:#131313; --panel:#1c1c1c; --line:#2c2c2c; --text:#f2f0ea; --muted:#8e8b84;
+  --ink-1:#ff5a36; --ink-2:#4d7cff; --ink-3:#f2b134; --ink-4:#2ec4a6; --ink-5:#ff7eb6;
+  --display:'Grex Sans', 'IBM Plex Sans', system-ui, sans-serif;
+  --ui:'Grex Sans', 'IBM Plex Sans', system-ui, sans-serif;
+  color-scheme:dark;
+}
+@font-face{font-family:'Grex Sans';src:url('GrexSans.woff2') format('woff2');font-weight:100 700;font-display:block}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text)}
+body{font-family:var(--ui);font-variation-settings:'GRAN' 0;font-size:16px;line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px)}
+.logo{font-weight:700;font-size:20px;font-variation-settings:'GRAN' 100;text-decoration:none}
+.btn{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--text);color:var(--text);background:none;border-radius:999px;padding:7px 14px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn:focus-visible,input:focus-visible,button:focus-visible,[contenteditable]:focus-visible{outline:2px solid var(--ink-3);outline-offset:3px}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--muted);margin:0 auto}
+section{padding:72px 0;border-top:1px solid var(--line)}
+section h2{margin:0 0 36px;text-align:center}
+
+/* hero wall */
+.wall{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.02em .28em;font-family:var(--display);font-size:clamp(40px,7.4vw,104px);line-height:1.04;padding:28px 0 56px;letter-spacing:-.01em}
+.wall span{transition:font-variation-settings .9s ease,font-weight .9s ease,color .9s ease}
+@media (prefers-reduced-motion:reduce){.wall span{transition:none}}
+
+/* intro + bento */
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:48px;align-items:start}
+.intro h1{font-size:34px;line-height:1.15;margin:0 0 18px;font-weight:600;text-wrap:balance;font-variation-settings:'GRAN' 60}
+.intro p{color:#cfcbc2;max-width:62ch;margin:0 0 14px}
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tile{background:var(--panel);border-radius:14px;padding:16px;min-height:132px;display:flex;flex-direction:column;justify-content:space-between}
+.tile .big{font-family:var(--display);font-size:clamp(30px,3.4vw,42px);white-space:nowrap;line-height:1;font-weight:700}
+.tile .lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tile.wide{grid-column:span 2}
+
+/* axis rows */
+.axis{display:grid;grid-template-columns:150px minmax(0,1fr) minmax(220px,320px) 70px;gap:24px;align-items:center;padding:22px 0;border-top:1px solid var(--line)}
+.axis:last-child{border-bottom:1px solid var(--line)}
+.axis .tag{font-size:12px;color:var(--muted)} .axis .tag b{color:var(--text);font-weight:600}
+.axis .word{font-family:var(--display);font-size:clamp(44px,6vw,84px);line-height:1;white-space:nowrap;overflow:hidden}
+.axis .val{font-size:26px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.ruler{position:relative}
+.ruler input{width:100%;appearance:none;-webkit-appearance:none;height:28px;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 10%) ,linear-gradient(var(--line),var(--line)) center/100% 1px no-repeat;cursor:ew-resize}
+.ruler input::-webkit-slider-thumb{-webkit-appearance:none;width:4px;height:28px;border-radius:2px;background:var(--c,var(--ink-1))}
+.ruler input::-moz-range-thumb{width:4px;height:28px;border:0;border-radius:2px;background:var(--c,var(--ink-1))}
+.ruler .ends{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px}
+
+/* size ladder */
+.ladder{display:grid;gap:4px}
+.rung{display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;align-items:baseline;border-bottom:1px solid var(--line);padding:10px 0}
+.rung .meta{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.rung .meta b{color:var(--ink-3);font-weight:600}
+.rung .s{white-space:nowrap;overflow:hidden;text-overflow:clip}
+
+/* features */
+.feat{display:grid;grid-template-columns:70px 190px minmax(0,1fr);gap:20px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+.feat .code{font-size:11px;border:1px solid var(--line);border-radius:6px;padding:3px 7px;justify-self:start;letter-spacing:.06em;text-transform:uppercase}
+.feat .nm{color:var(--muted);font-size:14px}
+.feat .demo{font-family:var(--display);font-size:clamp(24px,3vw,40px);line-height:1.1;display:flex;gap:.6em;align-items:baseline;flex-wrap:wrap}
+.feat .demo .off{color:var(--muted)}
+.feat .demo .arrow{font-size:.5em;color:var(--muted)}
+.hl{color:var(--c)}
+
+/* tester */
+.controls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-bottom:26px}
+.ctl label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.ctl label output{color:var(--text);font-variant-numeric:tabular-nums}
+.ctl input{width:100%;accent-color:var(--c)}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.presets button[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+#tester{font-family:var(--display);outline:none;min-height:1.2em;word-break:break-word;border-left:2px solid transparent;padding-left:4px}
+
+/* glyphs */
+.glyphs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px}
+.inspector{background:var(--panel);border-radius:16px;padding:18px;position:sticky;top:76px;align-self:start}
+.inspector .head{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);gap:10px;flex-wrap:wrap}
+.stage{position:relative;height:380px;margin:12px 0;overflow:hidden}
+.stage .ml{position:absolute;left:0;right:0;border-top:1px dashed #3a3a3a;font-size:10px;color:var(--muted)}
+.stage .ml span{position:absolute;right:0;top:-16px;background:var(--panel);padding:0 4px}
+.stage .g{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--display);line-height:1;white-space:pre}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;font-size:12px;color:var(--muted)}
+.stats b{display:block;color:var(--text);font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));border-left:1px solid var(--line);border-top:1px solid var(--line);max-height:640px;overflow:auto}
+.grid button{aspect-ratio:1;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:none;color:var(--text);font-family:var(--display);font-size:30px;cursor:pointer;font-variation-settings:'GRAN' 100}
+.grid button:hover,.grid button[aria-selected="true"]{background:var(--text);color:var(--bg)}
+
+/* download */
+.dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{background:var(--panel);border-radius:14px;padding:20px}
+.card h3{margin:0 0 8px;font-size:16px}
+.card p{margin:0 0 12px;color:#cfcbc2;font-size:14px}
+pre{background:#0d0d0d;border-radius:10px;padding:12px;overflow-x:auto;font-size:12px;margin:0 0 10px;font-family:ui-monospace,Menlo,monospace}
+footer{padding:40px 24px 60px;color:var(--muted);font-size:13px;text-align:center}
+
+@media (max-width:860px){
+  .intro,.glyphs{grid-template-columns:1fr}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .axis{grid-template-columns:1fr 70px}
+  .axis .tag{grid-column:1/-1} .axis .ruler{grid-column:1/-1;order:3}
+  .feat{grid-template-columns:70px 1fr} .feat .demo{grid-column:1/-1}
+  .controls{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dl{grid-template-columns:1fr}
+  .inspector{position:static}
+}
+</style>
+</head>
+<body>
+<header class="top"><a class="logo" href="#top">Grex.</a><a class="btn" href="#download">Get the font ↓</a></header>
+<main id="top">
+  <div class="wrap"><div class="wall" id="wall" aria-label="Hello in many languages"></div></div>
+
+  <section><div class="wrap intro">
+    <div>
+      <h1>Grex Sans is IBM Plex Sans with grain pressed into it.</h1>
+      <p>Every letter carries its own wear: edges that wobble, bites taken out of the ink, specks thrown off the edge and small knockouts inside the strokes. It reads like type that has been printed rather than rendered.</p>
+      <p>The grain is a variable axis. At 0 you have Plex Sans, untouched. At 100 the texture is fully in. In between it grows smoothly, at every weight from Thin to Bold, so you can set heavy grain on a headline and keep the text beneath it clean.</p>
+    </div>
+    <div class="bento" id="bento"></div>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2><span class="pill">Variable axes</span></h2>
+    <div id="axes"></div>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2><span class="pill">Grain follows size</span></h2>
+    <p style="text-align:center;color:var(--muted);max-width:60ch;margin:-14px auto 30px">The grain is drawn into the outlines, so it scales with the type. Tie it to font size and it stays out of the way in running text and comes forward at display sizes.</p>
+    <div class="ladder" id="ladder"></div>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2><span class="pill">Stylistic sets &amp; features</span></h2>
+    <div id="feats"></div>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2><span class="pill">Type tester</span></h2>
+    <div class="controls" id="controls"></div>
+    <div class="presets" id="presets"></div>
+    <div id="tester" contenteditable="true" spellcheck="false" aria-label="Editable sample text">Good type gets a little worn in.</div>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2><span class="pill">Character set</span></h2>
+    <div class="glyphs">
+      <div class="inspector" id="inspector">
+        <div class="head"><span id="iName"></span><span id="iAxes">wght 400 · GRAN 100</span></div>
+        <div class="stage" id="stage"></div>
+        <div class="stats">
+          <div>Unicode<b id="iU"></b></div>
+          <div>Points in Plex<b id="iP"></b></div>
+          <div>Points in Grex<b id="iG"></b></div>
+        </div>
+      </div>
+      <div class="grid" id="grid" role="listbox" aria-label="All characters"></div>
+    </div>
+  </div></section>
+
+  <section id="download"><div class="wrap">
+    <h2><span class="pill">Get Grex Sans</span></h2>
+    <div class="dl">
+      <div class="card"><h3>Variable font</h3><p>One file holds every weight and every grain level.</p><pre>Type/fonts/grex-sans/fonts/
+  GrexSans[GRAN,wght].ttf     desktop
+  GrexSans[GRAN,wght].woff2   web</pre></div>
+      <div class="card"><h3>Use it on the web</h3><pre id="css">@font-face {
+  font-family: 'Grex Sans';
+  src: url(GrexSans.woff2) format('woff2');
+  font-weight: 100 700;
+}
+h1 { font-variation-settings: 'GRAN' 100; }
+p  { font-variation-settings: 'GRAN' 15; }</pre><button class="btn" id="copy">Copy CSS</button></div>
+      <div class="card"><h3>Licence</h3><p>SIL Open Font License 1.1. Free to use, embed and modify; modified versions stay under the OFL and can't be sold on their own.</p><p>Built on IBM Plex Sans by Mike Abbink and Bold Monday. Grain by JC Morales.</p></div>
+    </div>
+  </div></section>
+</main>
+<footer>Grex Sans 2.0 · <span id="fcount"></span> characters · two axes</footer>
+
+<script>
+const INKS=['var(--ink-1)','var(--ink-2)','var(--ink-3)','var(--ink-4)','var(--ink-5)','var(--text)'];
+const rnd=(a,b)=>a+Math.random()*(b-a), pick=a=>a[Math.floor(Math.random()*a.length)];
+const fvs=(el,w,g)=>{el.style.fontWeight=Math.round(w);el.style.fontVariationSettings=`'GRAN' ${Math.round(g)}`};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// hero
+const words='Hello Hola Ciao Hallo Olá Hej Salut Moi Tere Szia Merhaba Ahoj Bok Halló Servus Hoi Aloha Salve Bonjour Cześć Sveiki Labas Dia dhuit Kia ora Jambo Grüezi'.split(' ');
+const wall=document.getElementById('wall');
+words.forEach((w,i)=>{const s=document.createElement('span');s.textContent=w;fvs(s,pick([100,300,400,500,700]),pick([0,40,100,100]));s.style.color=INKS[i%INKS.length];wall.appendChild(s)});
+if(!reduce) setInterval(()=>{const s=pick([...wall.children]);fvs(s,rnd(100,700),pick([0,30,70,100]));s.style.color=pick(INKS)},700);
+
+fetch('data.json').then(r=>r.json()).then(D=>{
+  const plex=D.glyphs.reduce((a,g)=>a+g[2],0), grex=D.glyphs.reduce((a,g)=>a+g[3],0);
+  document.getElementById('fcount').textContent=D.glyphs.length;
+  // bento
+  const tiles=[
+    ['Weight','100–700','wght',700,60],['Grain','0–100','GRAN',400,100],
+    ['Characters',D.glyphs.length,'',500,100],['Features',D.features.length,'',300,100],
+    ['Points vs Plex','×'+(grex/plex).toFixed(0),'',700,100],['Licence','OFL','',600,100]];
+  const bento=document.getElementById('bento');
+  tiles.forEach(([lab,big,tag,w,g,cls],i)=>{const t=document.createElement('div');t.className='tile '+(cls||'');
+    t.innerHTML=`<span class="lab">${lab}</span><span class="big">${big}</span>`;fvs(t.querySelector('.big'),w,g);t.querySelector('.big').style.color=INKS[i%5];bento.appendChild(t)});
+
+  // axes
+  const ax=document.getElementById('axes');
+  const rows=[
+    {tag:'wght',name:'Weight',note:'Set by you',word:'Heavier',min:100,max:700,val:400,c:'var(--ink-1)'},
+    {tag:'GRAN',name:'Grain',note:'Set by you',word:'Grainier',min:0,max:100,val:70,c:'var(--ink-2)'},
+  ];
+  rows.forEach(r=>{const el=document.createElement('div');el.className='axis';
+    el.innerHTML=`<div class="tag"><b>${r.tag}</b> ${r.name}<br>${r.note}</div><div class="word" style="color:${r.c}">${r.word}</div>
+      <div class="ruler" style="--c:${r.c}"><input type="range" id="ax-${r.tag}" min="${r.min}" max="${r.max}" value="${r.val}" aria-label="${r.name}"><div class="ends"><span>${r.min}</span><span>${r.max}</span></div></div><div class="val">${r.val}</div>`;
+    ax.appendChild(el)});
+  const wIn=document.getElementById('ax-wght'), gIn=document.getElementById('ax-GRAN');
+  const words2=ax.querySelectorAll('.word'), vals=ax.querySelectorAll('.val');
+  const updAx=()=>{const w=+wIn.value,g=+gIn.value;fvs(words2[0],w,60);fvs(words2[1],500,g);vals[0].textContent=w;vals[1].textContent=g};
+  wIn.oninput=gIn.oninput=updAx;updAx();
+
+  // ladder
+  const grainFor=px=>Math.round(Math.max(0,Math.min(1,(px-14)/(110-14)))*100);
+  const lad=document.getElementById('ladder');
+  [12,16,22,32,48,72,110].forEach(px=>{const g=grainFor(px);const r=document.createElement('div');r.className='rung';
+    r.innerHTML=`<div class="meta">${px}px<br><b>GRAN ${g}</b></div><div class="s" style="font-size:${px}px">Printed, not rendered. ${px>40?'':'The grain stays back in text and comes forward in headlines.'}</div>`;
+    fvs(r.querySelector('.s'),px>40?600:400,g);lad.appendChild(r)});
+
+  // features — highlight the glyphs the feature changes
+  const HL={ss01:/[aáàâäãåāăą]/g,ss02:/[gğĝģġ]/g,ss03:/0/g,ss04:/0/g,ss05:/ß/g,onum:/\d/g,frac:/3\/4/g,sups:/2/g,subs:/2/g,ordn:/\d[ao]/g,liga:/fi/g};
+  const fe=document.getElementById('feats');
+  D.features.forEach((f,i)=>{const c=INKS[i%5];
+    const on=f.sample.replace(HL[f.tag],m=>`<span class="hl" style="--c:${c}">${m}</span>`);
+    const el=document.createElement('div');el.className='feat';
+    el.innerHTML=`<span class="code">${f.tag}</span><span class="nm">${f.name}</span><div class="demo"><span class="off">${f.sample}</span><span class="arrow">→</span><span class="on" style="font-feature-settings:'${f.tag}' 1">${on}</span></div>`;
+    fvs(el.querySelector('.off'),400,100);fvs(el.querySelector('.on'),400,100);fe.appendChild(el)});
+
+  // tester
+  const T=document.getElementById('tester');
+  const ctls=[['size','Size',12,200,96,'px','var(--ink-3)'],['wght','Weight',100,700,500,'','var(--ink-1)'],['gran','Grain',0,100,100,'','var(--ink-2)'],['lh','Line height',80,160,105,'%','var(--ink-4)'],['ls','Spacing',-6,10,-1,'%','var(--ink-5)']];
+  const C=document.getElementById('controls');
+  ctls.forEach(([id,lab,mn,mx,v,u,c])=>{const d=document.createElement('div');d.className='ctl';
+    d.innerHTML=`<label for="t-${id}">${lab}<output id="o-${id}">${v}${u}</output></label><input type="range" id="t-${id}" min="${mn}" max="${mx}" value="${v}" style="--c:${c}">`;C.appendChild(d)});
+  const g=id=>+document.getElementById('t-'+id).value;
+  const updT=()=>{T.style.fontSize=g('size')+'px';fvs(T,g('wght'),g('gran'));T.style.lineHeight=g('lh')/100;T.style.letterSpacing=g('ls')/100+'em';
+    ctls.forEach(([id,,,,,u])=>document.getElementById('o-'+id).textContent=g(id)+u)};
+  C.addEventListener('input',updT);updT();
+  const P={Headline:['Good type gets a little worn in.',96,600,100,105,-1],Pangram:['Sphinx of black quartz, judge my vow.',72,400,80,110,0],
+    Numbers:['0123456789 → €2,480.15 · 3/4 · 1,024',64,500,60,115,0],Body:['Grex Sans keeps the clarity of IBM Plex Sans and adds the texture of ink on paper. At text sizes, set the grain low and let it show only at the edges; at display sizes, let it run.',20,400,15,150,0]};
+  const pr=document.getElementById('presets');
+  Object.entries(P).forEach(([k,v],i)=>{const b=document.createElement('button');b.className='btn';b.textContent=k;b.setAttribute('aria-pressed',i==0);
+    b.onclick=()=>{pr.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));T.textContent=v[0];
+      ['size','wght','gran','lh','ls'].forEach((id,j)=>document.getElementById('t-'+id).value=v[j+1]);updT()};pr.appendChild(b)});
+
+  // glyphs
+  const M=D.metrics, stage=document.getElementById('stage'), fs=200, k=fs/D.upm, B=250;
+  const yOf=v=>B-v*k;
+  [['Ascender',M.ascender],['Cap height',M.cap],['x-height',M.xheight],['Baseline',0],['Descender',M.descender]].forEach(([n,v])=>{
+    const l=document.createElement('div');l.className='ml';l.style.top=yOf(v)+'px';l.innerHTML=`${n}<span>${v}</span>`;stage.appendChild(l)});
+  const gEl=document.createElement('div');gEl.className='g';gEl.style.fontSize=fs+'px';gEl.style.lineHeight='0';
+  gEl.style.top=(B-(M.ascender+M.descender)*k/2)+'px';fvs(gEl,400,100);stage.appendChild(gEl);
+  const grid=document.getElementById('grid');
+  const show=(gl,btn)=>{gEl.textContent=String.fromCodePoint(gl[0]);
+    document.getElementById('iName').textContent=gl[1];document.getElementById('iU').textContent='U+'+gl[0].toString(16).toUpperCase().padStart(4,'0');
+    document.getElementById('iP').textContent=gl[2];document.getElementById('iG').textContent=gl[3].toLocaleString();
+    grid.querySelectorAll('[aria-selected="true"]').forEach(b=>b.setAttribute('aria-selected','false'));if(btn)btn.setAttribute('aria-selected','true')};
+  D.glyphs.forEach(gl=>{const b=document.createElement('button');b.textContent=String.fromCodePoint(gl[0]);b.title=gl[1];b.setAttribute('role','option');b.setAttribute('aria-selected','false');
+    b.onclick=()=>show(gl,b);grid.appendChild(b)});
+  const gi=D.glyphs.findIndex(x=>x[0]==103);show(D.glyphs[gi],grid.children[gi]);
+});
+document.getElementById('copy').onclick=async e=>{try{await navigator.clipboard.writeText(document.getElementById('css').textContent);e.target.textContent='Copied'}catch{e.target.textContent='Select and copy the CSS above'}};
+</script>
+</body>
+</html>

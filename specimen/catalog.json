@@ -1,0 +1,118 @@
+[
+ {
+  "slug": "grex-sans",
+  "name": "Grex Sans",
+  "tagline": "IBM Plex Sans with a little grit in the mix",
+  "version": "2.0",
+  "axes": [
+   {
+    "tag": "wght",
+    "name": "Weight",
+    "min": 100.0,
+    "max": 700.0,
+    "default": 400.0
+   },
+   {
+    "tag": "GRAN",
+    "name": "Grain",
+    "min": 0.0,
+    "max": 100.0,
+    "default": 100.0
+   }
+  ],
+  "glyphs": 364,
+  "display": {
+   "wght": 700,
+   "GRAN": 100
+  },
+  "italic": false,
+  "base": {
+   "name": "IBM Plex Sans",
+   "by": "Mike Abbink with Bold Monday, for IBM",
+   "url": "https://github.com/IBM/plex",
+   "copyright": "Copyright © 2017 IBM Corp., with Reserved Font Name “Plex”",
+   "trademark": "IBM Plex is a trademark of IBM Corp."
+  },
+  "remix": {
+   "ingredient": "Grit",
+   "note": "Remixed with a little grit: knockouts, specks and a ragged edge"
+  }
+ },
+ {
+  "slug": "news-press",
+  "name": "News Press",
+  "tagline": "Newsreader, pulled through a little ink",
+  "version": "1.0",
+  "axes": [
+   {
+    "tag": "wght",
+    "name": "Weight",
+    "min": 200.0,
+    "max": 800.0,
+    "default": 400.0
+   },
+   {
+    "tag": "PRES",
+    "name": "Press",
+    "min": 0.0,
+    "max": 100.0,
+    "default": 50.0
+   }
+  ],
+  "glyphs": 561,
+  "display": {
+   "wght": 600,
+   "PRES": 50
+  },
+  "italic": true,
+  "base": {
+   "name": "Newsreader",
+   "by": "Production Type",
+   "url": "https://github.com/productiontype/Newsreader",
+   "copyright": "Copyright 2020 The Newsreader Project Authors",
+   "trademark": "Newsreader is a registered trademark of Production Systems SAS."
+  },
+  "remix": {
+   "ingredient": "Ink",
+   "note": "Remixed with ink: a letterpress edge and knockouts where the paper didn’t take it"
+  }
+ },
+ {
+  "slug": "worked-sans",
+  "name": "Worked Sans",
+  "tagline": "Work Sans, worn in by hand",
+  "version": "1.0",
+  "axes": [
+   {
+    "tag": "wght",
+    "name": "Weight",
+    "min": 100.0,
+    "max": 900.0,
+    "default": 400.0
+   },
+   {
+    "tag": "WORK",
+    "name": "Worked",
+    "min": 0.0,
+    "max": 100.0,
+    "default": 100.0
+   }
+  ],
+  "glyphs": 749,
+  "display": {
+   "wght": 700,
+   "WORK": 80
+  },
+  "italic": true,
+  "base": {
+   "name": "Work Sans",
+   "by": "Wei Huang",
+   "url": "https://github.com/weiweihuanghuang/Work-Sans",
+   "copyright": "Copyright 2019 The Work Sans Project Authors"
+  },
+  "remix": {
+   "ingredient": "Wear",
+   "note": "Remixed with wear: softened corners and a hand-drawn wobble"
+  }
+ }
+]

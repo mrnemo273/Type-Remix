@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grex Sans Specimen — Press Proof</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: the specimen is a printer's proof sheet — crop marks, a job slug, colour bars — and every section is a proof of one variable. */
+:root{
+  --paper:#e9eae6; --sheet:#f6f6f3; --ink:#141414; --rule:#c9cbc4; --muted:#6b6d66;
+  --cyan:#00a0e3; --magenta:#e5007e; --yellow:#ffd200;
+  --display:'Grex Sans','IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@font-face{font-family:'Grex Sans';src:url('GrexSans.woff2') format('woff2');font-weight:100 700;font-display:block}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{font-family:var(--display);font-variation-settings:'GRAN' 0;line-height:1.5;padding:28px 16px 60px}
+.sheet{max-width:1200px;margin:0 auto;background:var(--sheet);position:relative;padding:56px 56px 48px;box-shadow:0 1px 0 var(--rule),0 18px 40px -24px rgba(0,0,0,.25)}
+/* crop marks */
+.sheet::before,.sheet::after,.sheet>.cm::before,.sheet>.cm::after{content:"";position:absolute;width:22px;height:22px;border:0 solid var(--ink)}
+.sheet::before{top:14px;left:14px;border-top-width:1px;border-left-width:1px}
+.sheet::after{top:14px;right:14px;border-top-width:1px;border-right-width:1px}
+.sheet>.cm::before{bottom:14px;left:14px;border-bottom-width:1px;border-left-width:1px}
+.sheet>.cm::after{bottom:14px;right:14px;border-bottom-width:1px;border-right-width:1px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.slug{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:28px}
+.bars{display:flex;height:12px}.bars i{width:18px;display:block}
+.reg{width:18px;height:18px;border-radius:50%;border:1px solid var(--ink);position:relative;display:inline-block;vertical-align:middle}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink)}
+.reg::before{left:50%;top:-4px;bottom:-4px;width:1px}.reg::after{top:50%;left:-4px;right:-4px;height:1px}
+h2{font-size:13px;margin:0;font-weight:500}
+.sec{border-top:1px solid var(--ink);padding:22px 0 40px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px}
+.sec>header p{color:var(--muted);font-size:13px;margin:8px 0 0;max-width:30ch}
+button,.tog{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;background:none;border:1px solid var(--ink);color:var(--ink);padding:6px 10px;cursor:pointer}
+button[aria-pressed="true"]{background:var(--ink);color:var(--sheet)}
+:focus-visible{outline:2px solid var(--magenta);outline-offset:2px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:28px;align-items:stretch;margin-bottom:36px}
+.plate{position:relative;border:1px solid var(--rule);min-height:330px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--sheet)}
+.plate .set{font-size:min(19vw,230px);line-height:1;letter-spacing:-.01em}
+.plate canvas{position:absolute;inset:0;width:100%;height:100%;display:none}
+.plate.drawn .set{visibility:hidden}.plate.drawn canvas{display:block}
+.plate .corner{position:absolute;top:8px;left:10px}
+.pad{position:relative;aspect-ratio:1;border:1px solid var(--ink);background:
+  linear-gradient(var(--rule) 1px,transparent 1px) 0 0/25% 25%,linear-gradient(90deg,var(--rule) 1px,transparent 1px) 0 0/25% 25%;cursor:crosshair;touch-action:none}
+.pad .dot{position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--magenta);box-shadow:0 0 0 3px var(--sheet)}
+.pad .hx,.pad .hy{position:absolute;background:var(--magenta);opacity:.5}
+.pad .hx{left:0;right:0;height:1px}.pad .hy{top:0;bottom:0;width:1px}
+.pad .ax{position:absolute;color:var(--muted)}
+.read{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 14px;margin-top:12px}
+.read b{display:block;font-family:var(--display);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;text-transform:none;letter-spacing:0;color:var(--ink)}
+.read div{color:var(--muted)}
+.lede{font-size:clamp(22px,2.6vw,30px);line-height:1.3;max-width:34ch;margin:0 0 36px;text-wrap:balance;font-variation-settings:'GRAN' 40}
+
+/* strip */
+.strip .row{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:baseline;border-bottom:1px dashed var(--rule);padding:8px 0}
+.strip .row .t{white-space:nowrap;overflow:hidden}
+.strip .row .mono{color:var(--muted)}.strip .row .mono b{color:var(--magenta);font-weight:500}
+.togs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.togs input{accent-color:var(--magenta)}
+
+/* matrix */
+.matrix{display:grid;grid-template-columns:70px repeat(4,minmax(0,1fr));border-left:1px solid var(--rule);border-top:1px solid var(--rule)}
+.matrix>div{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:8px 4px;text-align:center;font-size:clamp(40px,7vw,100px);line-height:1.15}
+.matrix>div.h{font-size:11px;color:var(--muted);display:flex;align-items:center;justify-content:center}
+
+/* features */
+table{width:100%;border-collapse:collapse}
+td,th{border-bottom:1px solid var(--rule);padding:10px 8px 10px 0;text-align:left;vertical-align:baseline}
+th{font-weight:400;color:var(--muted)}
+td.s{font-size:clamp(20px,2.6vw,32px);font-variation-settings:'GRAN' 100}
+td.s.off{color:#9a9c95}
+.hl{color:var(--magenta)}
+
+/* glyph sheet */
+.gs{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:0;border-left:1px solid var(--rule);border-top:1px solid var(--rule)}
+.gs span{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);text-align:center;font-size:40px;line-height:64px;font-variation-settings:'GRAN' 100;transition:font-variation-settings .25s}
+.gs span:hover{font-variation-settings:'GRAN' 0;background:var(--yellow)}
+.ticket{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.ticket p{margin:6px 0 0;font-size:14px}
+pre{font-family:var(--mono);font-size:12px;background:var(--paper);padding:12px;overflow-x:auto;margin:8px 0}
+@media (max-width:860px){
+  .sheet{padding:40px 20px}
+  .hero,.sec,.ticket{grid-template-columns:1fr}
+  .matrix{grid-template-columns:44px repeat(4,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){.gs span{transition:none}}
+</style>
+</head>
+<body>
+<div class="sheet"><span class="cm"></span>
+  <div class="slug mono">
+    <span><span class="reg"></span>&nbsp; Job 0001 · Grex Sans · Proof 2</span>
+    <span>Base: IBM Plex Sans · Axes: wght 100–700, GRAN 0–100</span>
+    <span class="bars"><i style="background:var(--cyan)"></i><i style="background:var(--magenta)"></i><i style="background:var(--yellow)"></i><i style="background:var(--ink)"></i><i style="background:#888"></i><i style="background:#bbb"></i></span>
+  </div>
+
+  <div class="hero">
+    <div class="plate" id="plate">
+      <span class="corner mono" id="mode">As set</span>
+      <span class="set" id="set">Grex</span>
+      <canvas id="cv"></canvas>
+    </div>
+    <div>
+      <div class="pad" id="pad" role="slider" tabindex="0" aria-label="Weight across, grain down. Arrow keys adjust.">
+        <div class="hx" id="hx"></div><div class="hy" id="hy"></div><div class="dot" id="dot"></div>
+        <span class="ax mono" style="bottom:4px;right:6px">Weight →</span>
+        <span class="ax mono" style="top:6px;left:6px">Grain ↓</span>
+      </div>
+      <div class="read mono">
+        <div>wght<b id="rW">400</b></div><div>GRAN<b id="rG">100</b></div>
+        <div>Points in Plex<b id="rP">—</b></div><div>Points in Grex<b id="rX">—</b></div>
+      </div>
+      <div class="togs" style="margin-top:12px">
+        <button id="bSet" aria-pressed="true">As set</button><button id="bDrawn" aria-pressed="false">As drawn</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="lede">Grex Sans is IBM Plex Sans with grain pressed into the outlines: edges that wobble, bites out of the ink, specks thrown off and knockouts inside the strokes. Drag the pad. Switch to <em>As drawn</em> to see what the grain is made of.</p>
+
+  <div class="sec strip">
+    <header><h2 class="mono">Proof 1 — Size</h2><p>The grain scales with the type. Set it by hand, or let it follow the size so text stays clean and headlines carry the texture.</p></header>
+    <div>
+      <div class="togs"><button id="auto" aria-pressed="true">Automatic</button><button id="manual" aria-pressed="false">Set by you</button>
+        <label class="mono" for="manG" style="display:flex;gap:8px;align-items:center">GRAN <input type="range" id="manG" min="0" max="100" value="100" disabled></label></div>
+      <div id="strip"></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <header><h2 class="mono">Proof 2 — Weight × grain</h2><p>Four weights at three grain levels. Above Regular the grain grows slower than the stroke, so Bold stays a word and doesn't turn into a smudge.</p></header>
+    <div class="matrix" id="matrix"></div>
+  </div>
+
+  <div class="sec">
+    <header><h2 class="mono">Proof 3 — Features</h2><p>Alternates and figure styles inherited from Plex Sans. Changed glyphs in magenta.</p></header>
+    <table id="feats"><thead><tr><th class="mono">Tag</th><th class="mono">Default</th><th class="mono">With feature</th></tr></thead><tbody></tbody></table>
+  </div>
+
+  <div class="sec">
+    <header><h2 class="mono">Proof 4 — Character set</h2><p><span id="cc"></span> characters at GRAN 100. Hover one to see it clean.</p></header>
+    <div class="gs" id="gs"></div>
+  </div>
+
+  <div class="sec">
+    <header><h2 class="mono">Ticket</h2></header>
+    <div class="ticket">
+      <div><span class="mono">Files</span><p>GrexSans[GRAN,wght].ttf for desktop, .woff2 for web, in Type/fonts/grex-sans/fonts.</p></div>
+      <div><span class="mono">CSS</span><pre id="css">font-family: 'Grex Sans';
+font-weight: 100 … 700;
+font-variation-settings: 'GRAN' 0 … 100;</pre><button id="copy">Copy</button></div>
+      <div><span class="mono">Licence</span><p>SIL Open Font License 1.1. Built on IBM Plex Sans (Mike Abbink, Bold Monday). Grain by JC Morales.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fvs=(el,w,g)=>{el.style.fontWeight=Math.round(w);el.style.fontVariationSettings=`'GRAN' ${Math.round(g)}`};
+let W=400,G=100,drawn=false,D=null;
+
+fetch('data.json').then(r=>r.json()).then(d=>{D=d;init()});
+
+function avarMap(n){const s=Object.entries(D.avar).map(([a,b])=>[+a,+b]).sort((a,b)=>a[0]-b[0]);
+  for(let i=1;i<s.length;i++){if(n<=s[i][0]){const[a0,b0]=s[i-1],[a1,b1]=s[i];return b0+(n-a0)/(a1-a0)*(b1-b0)}}return n}
+function coords(g,w,gr){const n=avarMap((w-400)/300),t=gr/100;
+  const pick=k=>g.m[k];const lerp=(a,b,u)=>a.map((v,i)=>v+(b[i]-v)*u);
+  const at=gg=>n<0?lerp(pick('400-'+gg),pick('100-'+gg),-n):lerp(pick('400-'+gg),pick('700-'+gg),n);
+  const adv=n<0?g.adv_400+(g.adv_100-g.adv_400)*-n:g.adv_400+(g.adv_700-g.adv_400)*n;
+  return{c:lerp(at(0),at(100),t),adv}}
+
+function drawCanvas(){
+  const cv=$('cv'),r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1;cv.width=r.width*dpr;cv.height=r.height*dpr;
+  const x=cv.getContext('2d');x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,r.width,r.height);
+  const gl=D.drawn.glyphs.map(g=>coords(g,W,G));const total=gl.reduce((a,g)=>a+g.adv,0);
+  const s=Math.min(r.width*0.86/total,r.height*0.62/D.metrics.cap);const ox=(r.width-total*s)/2,base=r.height/2+D.metrics.cap*s/2;
+  // metric lines
+  x.strokeStyle=getComputedStyle(document.body).getPropertyValue('--rule');x.lineWidth=1;x.setLineDash([3,4]);
+  [0,D.metrics.xheight,D.metrics.cap].forEach(v=>{x.beginPath();x.moveTo(0,base-v*s+.5);x.lineTo(r.width,base-v*s+.5);x.stroke()});x.setLineDash([]);
+  let pen=ox;
+  gl.forEach((g,gi)=>{const ends=D.drawn.glyphs[gi].ends,c=g.c;x.beginPath();let st=0;
+    ends.forEach(e=>{for(let i=st;i<=e;i++){const px=pen+c[2*i]*s,py=base-c[2*i+1]*s;i==st?x.moveTo(px,py):x.lineTo(px,py)}x.closePath();st=e+1});
+    x.fillStyle='rgba(20,20,20,.08)';x.fill('nonzero');x.strokeStyle='#141414';x.lineWidth=.8;x.stroke();
+    x.fillStyle='#e5007e';for(let i=0;i<c.length/2;i++){x.fillRect(pen+c[2*i]*s-1,base-c[2*i+1]*s-1,2,2)}
+    pen+=g.adv*s});
+}
+function update(){
+  fvs($('set'),W,G);$('rW').textContent=Math.round(W);$('rG').textContent=Math.round(G);
+  const pad=$('pad'),px=(W-100)/600*100,py=G;$('dot').style.left=px+'%';$('dot').style.top=py+'%';$('hx').style.top=py+'%';$('hy').style.left=px+'%';
+  pad.setAttribute('aria-valuetext',`weight ${Math.round(W)}, grain ${Math.round(G)}`);
+  if(drawn&&D)drawCanvas();
+}
+function init(){
+  const plex=D.drawn.glyphs.reduce((a,g)=>a+g.plexPts,0),grex=D.drawn.glyphs.reduce((a,g)=>a+g.m['400-0'].length/2,0);
+  $('rP').textContent=plex;$('rX').textContent=grex.toLocaleString();
+  // pad
+  const pad=$('pad');const mv=e=>{const r=pad.getBoundingClientRect();W=100+600*Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));G=100*Math.min(1,Math.max(0,(e.clientY-r.top)/r.height));update()};
+  pad.addEventListener('pointerdown',e=>{pad.setPointerCapture(e.pointerId);mv(e)});pad.addEventListener('pointermove',e=>{if(e.buttons)mv(e)});
+  pad.addEventListener('keydown',e=>{const k={ArrowLeft:[-20,0],ArrowRight:[20,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];if(k){e.preventDefault();W=Math.min(700,Math.max(100,W+k[0]));G=Math.min(100,Math.max(0,G+k[1]));update()}});
+  const setMode=d=>{drawn=d;$('plate').classList.toggle('drawn',d);$('mode').textContent=d?'As drawn':'As set';$('bSet').setAttribute('aria-pressed',!d);$('bDrawn').setAttribute('aria-pressed',d);update()};
+  $('bSet').onclick=()=>setMode(false);$('bDrawn').onclick=()=>setMode(true);addEventListener('resize',()=>drawn&&drawCanvas());
+  update();
+  // strip
+  const sizes=[11,14,18,24,36,54,80,120];let auto=true;
+  const grainFor=px=>Math.round(Math.max(0,Math.min(1,(px-14)/(110-14)))*100);
+  const strip=$('strip');sizes.forEach(px=>{const r=document.createElement('div');r.className='row';r.innerHTML=`<span class="mono">${px}px · <b></b></span><span class="t" style="font-size:${px}px">Ink takes a little paper with it.</span>`;strip.appendChild(r)});
+  const updS=()=>{[...strip.children].forEach((r,i)=>{const g=auto?grainFor(sizes[i]):+$('manG').value;r.querySelector('b').textContent='GRAN '+g;fvs(r.querySelector('.t'),sizes[i]>40?600:400,g)});
+    $('auto').setAttribute('aria-pressed',auto);$('manual').setAttribute('aria-pressed',!auto);$('manG').disabled=auto};
+  $('auto').onclick=()=>{auto=true;updS()};$('manual').onclick=()=>{auto=false;updS()};$('manG').oninput=updS;updS();
+  // matrix
+  const M=$('matrix'),ws=[100,300,500,700];
+  M.insertAdjacentHTML('beforeend','<div class="h mono">GRAN</div>'+ws.map(w=>`<div class="h mono">${w}</div>`).join(''));
+  [0,50,100].forEach(g=>{M.insertAdjacentHTML('beforeend',`<div class="h mono">${g}</div>`);ws.forEach(w=>{const c=document.createElement('div');c.textContent='Ag';fvs(c,w,g);M.appendChild(c)})});
+  // features
+  const HL={ss01:/[aáàâäãåāăą]/g,ss02:/[gğĝģġ]/g,ss03:/0/g,ss04:/0/g,ss05:/ß/g,onum:/\d/g,frac:/3\/4/g,sups:/2/g,subs:/2/g,ordn:/\d[ao]/g,liga:/fi/g};
+  const tb=$('feats').querySelector('tbody');
+  D.features.forEach(f=>{tb.insertAdjacentHTML('beforeend',`<tr><td class="mono">${f.tag}<br><span style="color:var(--muted);text-transform:none">${f.name}</span></td><td class="s off">${f.sample}</td><td class="s" style="font-feature-settings:'${f.tag}' 1">${f.sample.replace(HL[f.tag],m=>`<span class="hl">${m}</span>`)}</td></tr>`)});
+  // glyphs
+  $('cc').textContent=D.glyphs.length;const gs=$('gs');D.glyphs.forEach(g=>{const s=document.createElement('span');s.textContent=String.fromCodePoint(g[0]);s.title=`${g[1]} · U+${g[0].toString(16).toUpperCase().padStart(4,'0')} · ${g[2]} → ${g[3]} points`;gs.appendChild(s)});
+}
+$('copy').onclick=async e=>{try{await navigator.clipboard.writeText($('css').textContent);e.target.textContent='Copied'}catch{e.target.textContent='Select the text to copy'}};
+</script>
+</body>
+</html>
